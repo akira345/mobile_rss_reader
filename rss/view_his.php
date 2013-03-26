@@ -11,7 +11,6 @@ function action( &$c )
 	$data = array();
 	//ユーザＩＤセット
 	$id = $_SESSION["RSS"]["USER"]["id"];
-
 	//履歴参照
 	$data = array(
 					'id' => $id
@@ -26,10 +25,10 @@ function action( &$c )
 		}
 		//全データ件数取得
 		$all_count = count($data);
-		
+
 		//表示ページ数
 		$page = 30;	//たちまちこれくらい
-		
+
 		//ページング設定
 		$option = array(
 			'baseUrl'	=> 'view_his.php',	// リンクのURL
@@ -50,25 +49,19 @@ function action( &$c )
 			'curTagOpen'	=> '<B>',		// "現在" のページの番号の開始タグ
 			'curTagClose'	=> '</B>',		// "現在" のページの番号の終了タグ
 		);
-
 		//ページング初期化
 		$c->pagination->initialize( $option );
-
 		//履歴データをページごとに分割する
 		$data = $c->pagination->slice( $data);
-		
+
 		//ページング表示
 		$c->set("pager",$c->pagination->create_links(),'TRUE');
-
 		//データ
 		$c->set("datas",$data,'FALSE');//リンクは許可しない
-
-
 	}else{
 		//データなし
 	}
 	//テンプレートファイル指定
 	$c->SetViewFile( "./tmplate/view_his.html" );
-
 }
-?>
+?>

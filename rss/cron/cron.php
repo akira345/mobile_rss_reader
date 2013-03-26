@@ -21,7 +21,6 @@ function action( &$c )
 		foreach($user_data as $u_data){
 			$user_id = $u_data["id"];
 			$e_mail = $u_data["e-mail"];
-
 			$tmp = array(
 							'id' => $user_id,
 							'haisin_flg' => '1',
@@ -29,47 +28,34 @@ function action( &$c )
 			If ($c->rss_data->getcount($tmp) > 0){
 				//データあり
 				$datas=$c->rss_data->find($tmp);
-
-
 				$wk_body2 = '';//RSS単位の文面
 				foreach($datas as $data){
 					//キーワードを取得
 					//念のため改行コードをそろえておく
-
 					$keyword = explode("\n",str_replace(array("\r\n","\n","\r"), "\n", $data["keyword"]));
 					//表示でつかうので退避
 					$wk_keyword = $keyword;
-
 					//キーワード文字の正規化を行う
-
 					$keyword = $c->mylib->mb_convert_kana_variables($keyword,'rnaskh',$c->encoding);
-
 					//キーワードの重複を除外
 					$uniq_keyword = array_unique($keyword);
-
 					//RSSのURL
 					$url = $data["rss_url"];
 					//コメント
 					$comment = $data["comment"];
 					//RSSのNO
 					$rss_no = $data["no"];
-
 					//RSSのパーズ
 					$url = html_entity_decode($url, ENT_QUOTES);
 					$rss = fetch_rss($url);
-
 					$wk_body = '';//記事のタイトル、本文
-
 					//携帯変換へのURL
 					//Googleを使ってみる
 					$keitai_cnv = 'http://www.google.co.jp/gwt/n?u=';
-
 					//携帯変換が必要かどうか
 					if($data["cnv_keitai"] == 0){
 						$keitai_cnv = null;
 					}
-
-
 					foreach ($rss->items as $item){
 						//ここの文字コードも取得できたら置換する
 						//記事単位
@@ -82,9 +68,7 @@ function action( &$c )
 							$wk_time = preg_replace('/T|[\+Z].+/', ' ',$item['dc']['date']); //2009-04-25 06:25:03
 						}else{
 							$wk_time = date('Y-m-d H:i:s',strtotime($item['pubdate'])); //2009-04-24 22:25:34
-
 						}
-
 						$match_keywords = '';//マッチングキーワードクリア
 						//広告NG処理
 						$ad_words = array("[PR]","【PR】","AD:","［PR］","AD：","広告：","PR:","PR：","Info:");
@@ -101,7 +85,6 @@ function action( &$c )
 							$tmp.= "and touroku_date >='" . date("Ymd",strtotime("-1 week")) ."'";//同じRSS,同じタイトルで配信する猶予期間は１週間
 						}
 						If($c->wk_send_rss->getcount($tmp) == 0){
-
 						//記事の中にキーワードにマッチしたものがあるか？
 							foreach ($uniq_keyword as $key){
 						//タイトルもマッチングの対象に変更20100318
@@ -110,7 +93,6 @@ function action( &$c )
 									//不一致はなにもしない
 								}else{
 										//一致したキーワードをセット
-
 										//まずは正規化したキーワードの配列キー取得
 										$match_key = array_search($key,$keyword);
 										//次に該当する配列キーから登録されたキーワードを取得する
@@ -169,11 +151,9 @@ function action( &$c )
 					$content="キーワードにマッチングした記事を送信いたします。"."\n\n".$wk_body2;
 					$mailfrom="From:info@exsample.com";
 					mb_send_mail($mailto,$subject,$content,$mailfrom);
-
 				}
 			}
 		}
 	}
-
 }
-?>
+?>

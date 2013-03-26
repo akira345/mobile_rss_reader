@@ -12,7 +12,7 @@ function config_models( &$controller )
 	$controller->AddModel( dirname(__FILE__) . "/../model/rss_data.php");
 	$controller->AddModel( dirname(__FILE__) . "/../model/category.php");
 	$controller->AddModel( dirname(__FILE__) . "/../model/login_his.php");
-	$controller->AddModel( dirname(__FILE__) . "/../model/wk_send_rss.php");	
+	$controller->AddModel( dirname(__FILE__) . "/../model/wk_send_rss.php");
 }
 //コンポーネントを定義する
 function config_components( &$controller )
@@ -30,7 +30,6 @@ function config_components( &$controller )
 //全コントローラ共通で前処理をさせたい場合ここに設定する
 function config_controller( &$controller )
 {
-
 //http://www.asahi-net.or.jp/~wv7y-kmr/memo/php_security.html#PHP_Sessionより
 //セッションIDの妥当性をチェックする。
 	$session_id = session_id();
@@ -78,3 +77,4 @@ function check_secure( &$controller )
     }
 }
 ?>
+

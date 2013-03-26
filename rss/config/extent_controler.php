@@ -3,12 +3,12 @@
 class CMyController extends CController
 {
 	var $encoding;	//エンコーディング
-	
+
     function CMyController()
     {
 		//コンストラクタ
     }
-	
+
 	function setEncoding($encode = 'EUC-JP'){//デフォルトはＥＵＣにする
 		$this->encoding = $encode;
 	}
@@ -34,8 +34,7 @@ class CMyController extends CController
 		}else{
 			return htmlentities($value, ENT_QUOTES,$this->encoding);
 		}
-	}	
-
+	}
 	function set( $name, $value, $out_tag_flg = FALSE )
 	{
 		//出力時にhtmlentitiesを通す。ただし、
@@ -46,7 +45,7 @@ class CMyController extends CController
 			$this->variables[$name]	= $value;
 		}
 	}
-	
+
 	function redirect( $url, $is301 = FALSE )
 	{
 		if( $is301 )
@@ -57,13 +56,10 @@ class CMyController extends CController
 		if(!$_COOKIE[session_name()]){
 			$url .= ( strpos($url, "?") != false ? "&" : "?" ) . urlencode(session_name()) . "=" . htmlspecialchars(session_id(),ENT_QUOTES);
 		}
-		### 
+		###
 		header( "Location: " . $url );
 		exit();
 	}
 
-	
 }
-
-
-?>
+?>
