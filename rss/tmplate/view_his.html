@@ -1,0 +1,60 @@
+<center>
+<!--タイトル-->
+	<h3>アクセス履歴</h3>
+</center>
+<hr>
+<BR>
+<!--ページング-->
+<?php echo $pager?>
+<BR>
+<table cellspacing="0" cellpadding="0" width=500 border="1">
+<tr bgcolor="#FFEEEE">
+    <td valign="top" width="5%" align="right">
+      <p align="center">No</p></td>
+    <td width="15%">登録日</td>
+    <td width="15%">登録時刻</td>
+    <td width="30%">内容</td>
+    <td width="20%">IP</td>
+    <td width="15%">アクセス元</td>
+</tr>
+
+<?php foreach( $data["datas"] as $var ){ 
+	$i += 1;	//カウンタ
+?>
+<tr bgcolor=#EEFFEE>
+	<!--NO-->
+    <td valign="right" align="right"><?php echo $i?></td>
+	<!--登録日-->
+    <td valign="center" align="center"><?php echo date("Y/m/d",strtotime($var["touroku_date"]))?></td>
+	<!--登録時刻-->
+    <td valign="center" align="center"><?php echo date("H:i:s",strtotime($var["touroku_time"]))?></td>
+	<!--内容-->
+    <td>　<?php echo $var["memo"]?></td>
+	<!--ＩＰ-->
+    <td valign="center" align="center"><?php echo $var["ip"]?>
+	<?php
+	//ホスト名が引けたら表示
+	$host = gethostbyaddr($var["ip"]);
+	 if($var["ip"] <> $host){
+	?>
+		<BR>(<?php echo $host; ?>)
+	<?php } ?>
+	</td>
+	<!--アクセス元-->
+    <td valign="center" align="center">
+		<?php
+			If($var["kyaria_cd"]>0){
+				echo "携帯";
+			}else{
+				echo "ＰＣ";
+			}
+		?>
+	</td>
+</tr>
+<?php } ?>
+
+</table>
+<BR>
+<!--ページング-->
+<?php echo $pager ?>
+

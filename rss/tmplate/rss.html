@@ -1,0 +1,29 @@
+<center>
+<!--タイトル-->
+	<h3><?php echo $title?></h3>
+</center>
+<hr>
+<a href="./mb_main.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>">戻る</a>
+<BR>
+<!--ページング-->
+<?php echo $pager?>
+<BR>
+<dl>
+<?php
+	foreach ($datas as $item ) {
+?>
+	<h6><a href="<?php echo $item['url']?>"><?php echo $item['title']?></a></h6>
+	<h6><?php echo $item['summary']?></h6>
+<HR>
+<?php
+	}
+?>
+<!--ページング-->
+<?php echo $pager?>
+</dl>
+<BR>
+<a href="./mb_main.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>">戻る</a>
+<BR>
+<a href="./logout.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>">ログアウト</a><BR>
+<BR>
+

@@ -1,0 +1,12 @@
+a.sidelink{
+    display:block;
+    background-color:#FFFFB0;
+    padding:0.5em 1em;
+    width:170px;
+    height:10px;
+    text-decoration:none;
+
+}
+a:hover.sidelink{
+    background-color:#FFCC99;
+}

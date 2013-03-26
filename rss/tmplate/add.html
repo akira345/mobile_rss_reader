@@ -1,0 +1,11 @@
+ユーザを登録します。
+<HR>
+<form method="post" action="add.php">
+id<br>
+<input type="text" name="name" value="<?php echo $data["name"]?>" <?php echo $c->mylib->set_ime("IME_OFF");?>><br>
+pw<br>
+<input type="text" name="pw" value="<?php echo $data["pw"]?>" <?php echo $c->mylib->set_ime("IME_OFF");?>><br>
+<input type="submit" value="書き込み">
+</form>
+<font color=red><?php echo $data["err"]?></font>
+

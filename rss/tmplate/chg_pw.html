@@ -1,0 +1,21 @@
+パスワード変更画面
+<BR>
+<font color=red>注意！パスワード変更しますと、ログアウトされます。</font>
+<br><br>
+<font color = "red"><?php print($err); ?></font>
+<Form method="POST" action="./chg_pw.php">
+<p>
+パスワード
+<INPUT size="20" type="text" name="pw" value="<?php echo $data["pw"]?>" <?php echo $c->mylib->set_ime("IME_OFF");?>>
+<br>
+パスワード(確認)
+<INPUT size="20" type="text" name="pw2" value="<?php echo $data["pw2"]?>" <?php echo $c->mylib->set_ime("IME_OFF");?>>
+</P>
+<BR>
+
+<INPUT type="submit" name="login" value="パスワード変更"><BR>
+  <input type=hidden name="<?php echo session_name()?>" value="<?php echo htmlspecialchars(session_id(),ENT_QUOTES)?>">
+  <input type="hidden" name="token" value="<?php echo $data["token"]?>">
+
+<BR>
+</FORM>

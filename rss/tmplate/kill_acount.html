@@ -1,0 +1,15 @@
+アカウント削除画面
+<BR>
+<br><br>
+<Form method="POST" action="./kill_acount.php">
+<p>
+アカウントを削除します。よろしいですか？<br><br>
+<font color=red>注意！削除されたアカウントを復活させることはできません。</font>
+
+</P>
+<BR>
+<input type="submit" name="bak" value="戻る">　
+<INPUT type="submit" name="kill" value="アカウント削除"><BR>
+  <input type=hidden name="<?php echo session_name()?>" value="<?php echo htmlspecialchars(session_id(),ENT_QUOTES)?>">
+<BR>
+</FORM>

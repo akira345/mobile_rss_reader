@@ -1,0 +1,24 @@
+<center>
+携帯メインメニュー
+</center>
+<hr>
+
+<BR>
+<?php
+	If (is_array($rss_datas) == TRUE){
+?>
+<!--カテゴリ登録がゼロの場合-->
+<p>以下のRSSが登録されています</p>
+<?php
+		 foreach( $rss_datas as $var ){ 
+?>
+	<h6><a href=./view_rss.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>&rss_cd=<?php echo $var["no"];?>><?php echo $var["comment"];?></a></h6>
+<?php
+	}
+}else{
+	echo $err;
+}
+?>
+<BR><BR>
+<a href="./logout.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>&">ログアウト</a><BR>
+<BR>

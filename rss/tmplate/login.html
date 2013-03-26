@@ -1,0 +1,25 @@
+携帯RSSリーダ<br>
+<?php
+If ($c->mylib->chk_mobile() == 0){
+?>
+<br>
+ユーザ登録は<a href=add.php>こちら</a>よりお願いいたします。<br>
+<br>
+<?php
+}
+?>
+<br>
+<P>ログイン</P>
+<HR>
+<font color = "red"><?php print($err); ?></font>
+<Form method="POST" action="./login.php">
+<P>ID:<INPUT size="20" type="text" name="name" value="<?php echo $data["name"]?>" <?php echo $c->mylib->set_ime("IME_OFF");?>>
+<br>
+PW:
+<INPUT size="20" type="text" name="pw" value="<?php echo $data["pw"]?>" <?php echo $c->mylib->set_ime("IME_OFF");?>></P><BR>
+<INPUT type="submit" name="login" value="ログイン"><BR>
+<BR>
+</FORM>
+<form method="POST" action="./login.php" utn>
+  <input type="submit" name="easy_login" value="簡単ログイン" />
+</form>

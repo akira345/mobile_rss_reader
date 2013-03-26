@@ -1,0 +1,60 @@
+<p>カテゴリ管理画面<br><br>カテゴリを登録します。<br>
+<form action="./add_category.php" method="POST">
+<input name="category_name">
+<input type="submit" value="登録" name="submit"><br>
+<font color=red><?php echo $data["err"];?></font>
+<input type="hidden" name="token" value="<?php echo $data["token"]?>">
+</form>
+</p>
+<br>
+<hr>
+<br>
+
+<p>現在登録されているカテゴリは以下のとおりです。<br><br>
+
+
+
+<table cellspacing="0" cellpadding="0" width="75%" border="1">
+  <tbody>
+<?php foreach( $data["datas"] as $var ){ 
+	$i += 1;	//カウンタ
+?>
+<tr bgcolor="#FFEEEE">
+<form action="./edit_category.php" method="POST">
+
+    <td valign="top" width="3%" align="right">
+      <p align="center">No</p></td>
+    <td>カテゴリ</td>
+    <td align="center">更新</td>
+    <td align="center">削除</td>
+</tr>
+<?php
+//更新レコードの色を変えてみる
+	If ($var["no"] == $data["change_no"]){
+		echo "<tr bgcolor=orange>";
+	}else{
+		echo "<tr bgcolor=#EEFFEE>";
+	}
+?>
+	<!--NO-->
+    <td valign="right" align="right"><?php echo $i?></td>
+	<!--カテゴリ-->
+	<td><input size="43" name="category_name" value="<?php echo $var["category"];?>" <?php echo $c->mylib->set_ime("IME_ON")?>>　</td>
+	<!--更新ボタン-->
+    <td>
+      <p align="center"><input type="submit" value="更新" name="update"></p>
+	</td>
+	<!--削除ボタン-->
+    <td>
+      <p align="center"><input type="submit" value="削除" name="del"></p>
+	</td>
+      <input type="hidden" name="no" value="<?php echo $var["no"];?>">
+      <input type="hidden" name="token" value="<?php echo $data["token"]?>">
+
+</form>
+</tr>
+<?php } ?>
+<font color=red><?php echo $data["err2"];?></font>
+</tbody>
+</table>
+</p>

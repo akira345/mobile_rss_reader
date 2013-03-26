@@ -1,0 +1,64 @@
+<center>
+携帯メインメニュー
+</center>
+<hr>
+<?php
+	If (is_array($category_datas) == TRUE){
+?>
+<!--カテゴリ登録がある場合-->
+<p>カテゴリを選択してください</p>
+<center><h6>
+<?php 
+	foreach( $category_datas as $var ){ 
+	$i += 1;	//カウンタ
+?>
+<a href=./select_rss.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>&category_cd=<?php echo $var["no"];?>><?php echo $var["category"];?></a>/
+<?php
+	//3回回ったら改行
+	If ($i % 3 == 0){ echo "</h6></center><BR><center><h6>"; }
+?>
+<?php
+	}
+echo "</center>";
+
+}
+?>
+
+<BR>
+<?php
+	If (is_array($rss_datas) == TRUE){
+?>
+<!--カテゴリ登録がゼロの場合-->
+<p>以下のRSSが登録されています</p>
+<?php
+		 foreach( $rss_datas as $var ){ 
+?>
+	<h6><a href=./view_rss.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>&rss_cd=<?php echo $var["no"];?>><?php echo $var["comment"];?></a></h6>
+<?php
+	}
+}
+?>
+<BR>
+<?php
+If($easy_login_chk == TRUE){
+?>
+<BR><br>
+簡単ログインの登録<br>
+<form method="POST" action="./mb_main.php" utn>
+  <input type="submit" name="submit" value="登録" />
+  <input type=hidden name="<?php echo session_name()?>" value="<?php echo htmlspecialchars(session_id(),ENT_QUOTES)?>">
+</form>
+<?php echo $err?>
+<?php
+}
+?>
+<BR>
+<a href="./chg_pw.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>">パスワード変更</a><BR>
+
+<BR><BR>
+<a href="./logout.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>">ログアウト</a><BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<a href="./kill_acount.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>">アカウント削除</a><BR>

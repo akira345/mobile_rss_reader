@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $c->getEncoding(); ?>">
+<title>携帯RSSリーダ</title>
+<link rel="stylesheet" type="text/css" href="./css/sidebar.css">
+
+</head>
+<body>
+<table cellspacing="0">
+  <tbody>
+  <tr>
+  <!-- サイド・メニュー -->
+    <td valign="top" noWrap width="15%" bgcolor="#F0FFB0">
+        <a class="sidelink" href="./add_rss.php">RSSの登録</a>
+        <a class="sidelink" href="./edit_rss.php">RSSの変更・削除</a>
+
+        <a class="sidelink" href="./edit_category.php">カテゴリの登録・変更・削除</a>
+        <a class="sidelink" href="./chg_pw.php">パスワード変更</a>
+        <a class="sidelink" href="./add_mail.php">メールアドレス登録</a>
+        <a class="sidelink" href="./view_his.php">ログイン履歴</a>
+        <BR>
+        <a class="sidelink" href="./logout.php">ログアウト</a>
+		<BR>
+		<BR>
+        <a class="sidelink" href="./kill_acount.php">アカウント削除</a>
+		<br>
+		<img src=./qr.php alt="アドレス">
+    </td>
+  <!-- コンテンツ -->
+    <td width="85%" valign="top"  bgcolor=#d1fcfb>
+	<?php print $this->content(); ?>
+    </td>
+  </tr>
+</tbody>
+</table>
+</body>
+</html>
