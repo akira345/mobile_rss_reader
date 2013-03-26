@@ -55,10 +55,10 @@ $wk_body2 .= "\n\n携帯RSSリーダ：http://exsample.com/rss/" . "\n";
 以上  
 
 参考にしたサイト、使用したコンポーネントなど  
-[ページネーションクラス](http://www4.osk.3web.ne.jp/~nisitatu/pagination.html "ページネーションクラス")
-[QRcode Perl CGI & PHP scripts ver. 0.50](http://www.swetake.com/qr/qr_cgi.html "QRcode Perl CGI & PHP scripts ver. 0.50")
-[MagpieRSS](http://sourceforge.net/projects/magpierss/files/ "MagpieRSS")
-[簡単ログインクラス](http://turi2.net/blog/709.html "簡単ログインクラス")
-[配列データを一気にクロスサイトスクリプティング対策する関数(php)](http://soft.fpso.jp/develop/php/entry_1891.html "配列データを一気にクロスサイトスクリプティング対策する関数(php)")
-[cookieが使えない場合のセッションについて](http://php.cheetan.net/community/forum/categories/2/topics/373/1.html "cookieが使えない場合のセッションについて")
-[PHP でセッション変数、Cookie を使用する際のセキュリティ対策について](http://www.asahi-net.or.jp/~wv7y-kmr/memo/php_security.html#PHP_Session "PHP でセッション変数、Cookie を使用する際のセキュリティ対策について")
+[ページネーションクラス](http://www4.osk.3web.ne.jp/~nisitatu/pagination.html "ページネーションクラス")  
+[QRcode Perl CGI & PHP scripts ver. 0.50](http://www.swetake.com/qr/qr_cgi.html "QRcode Perl CGI & PHP scripts ver. 0.50")  
+[MagpieRSS](http://sourceforge.net/projects/magpierss/files/ "MagpieRSS")  
+[簡単ログインクラス](http://turi2.net/blog/709.html "簡単ログインクラス")  
+[配列データを一気にクロスサイトスクリプティング対策する関数(php)](http://soft.fpso.jp/develop/php/entry_1891.html "配列データを一気にクロスサイトスクリプティング対策する関数(php)")  
+[cookieが使えない場合のセッションについて](http://php.cheetan.net/community/forum/categories/2/topics/373/1.html "cookieが使えない場合のセッションについて")  
+[PHP でセッション変数、Cookie を使用する際のセキュリティ対策について](http://www.asahi-net.or.jp/~wv7y-kmr/memo/php_security.html#PHP_Session "PHP でセッション変数、Cookie を使用する際のセキュリティ対策について")  
