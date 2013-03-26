@@ -1,64 +1,64 @@
-�g��RSS���[�_�[
+﻿携帯RSSリーダー
 =================  
-������K���P�[��RSS��ǂނ��߂�Web�A�v���ł��B  
-���E�ŏ��t���[�����[�N����������g�p���Ă��܂��B  
-�����Ƃ��ẮA  
-RSS�̓o�^�A�J�e�S���C�Y�A�L�[���[�h�ݒ��PC�ōs���B  
-(PC�ł�RSS���[�_�͑�R����̂ŁAPC���ł̃��[�_�[�@�\�͂���܂���j  
-�w�肵��RSS�Ɏw�肵���L�[���[�h�����v�����ꍇ�A�g�тփ��[���ł��m�点�B  
-�K���P�[���ł́ARSS���g�їp�ɕϊ����ĕ\���B  
-�L��RSS�̏��O�@�\�t  
+いわゆるガラケーでRSSを読むためのWebアプリです。  
+世界最小フレームワークちいたんを使用しています。  
+特徴としては、  
+RSSの登録、カテゴライズ、キーワード設定はPCで行う。  
+(PCでのRSSリーダは沢山あるので、PC側でのリーダー機能はありません）  
+指定したRSSに指定したキーワードが合致した場合、携帯へメールでお知らせ。  
+ガラケー側では、RSSを携帯用に変換して表示。  
+広告RSSの除外機能付  
 
-������́A  
+動作環境は、  
 
-PHP:�T�D�Q�D�U�ȏ�  
+PHP:５．２．６以上  
 
-GD���C�u����:5.2.6�ȏ�  
+GDライブラリ:5.2.6以上  
 
-MySQL:�T�D�O�D�S�T�ȏ�  
+MySQL:５．０．４５以上  
 
-�t���[�����[�N�F��������  
+フレームワーク：ちいたん  
 
-DB�̕����R�[�h��UTF-�W�ō쐬���Ă��܂��B  
+DBの文字コードはUTF-８で作成しています。  
 
-�ݒu���@  
+設置方法  
 
-�P�F/cron/cron.php���J���A  
+１：/cron/cron.phpを開き、  
   
-require_once( �g<�T�[�o�̐�΃p�X>/rss/component/rss_fetch.inc�h);  
-define(�eMAGPIE_OUTPUT_ENCODING�f, �eutf-8��);  
-define(�eMAGPIE_CACHE_DIR�f,'<�T�[�o�̐�΃p�X>/rss/component/cache�f);  
-//��������͂��Ƃɓǂݍ��܂�����  
-require_once( �g<�T�[�o�̐�΃p�X>/rss/config/config.php�h );  
-require_once( �g<�T�[�o�̐�΃p�X>/cheetan/cheetan.php�h );  
+require_once( “<サーバの絶対パス>/rss/component/rss_fetch.inc”);  
+define(‘MAGPIE_OUTPUT_ENCODING’, ‘utf-8′);  
+define(‘MAGPIE_CACHE_DIR’,'<サーバの絶対パス>/rss/component/cache’);  
+//ちいたんはあとに読み込ますこと  
+require_once( “<サーバの絶対パス>/rss/config/config.php” );  
+require_once( “<サーバの絶対パス>/cheetan/cheetan.php” );  
   
-�̉ӏ����΃p�X�ɏ��������܂��B  
+の箇所を絶対パスに書き直します。  
 
-�Ō�̂ق��ɂ���  
-$mailfrom=�hFrom:info@exsamile.com�h;  
-�̉ӏ���K�؂ȃ��[���A�h���X�ɕύX���܂��B  
-$wk_body2 .= "\n\n�g��RSS���[�_�Fhttp://exsample.com/rss/" . "\n";  
-�̉ӏ���K�؂ȃA�h���X�ɕύX���܂��B  
+最後のほうにある  
+$mailfrom=”From:info@exsamile.com”;  
+の箇所を適切なメールアドレスに変更します。  
+$wk_body2 .= "\n\n携帯RSSリーダ：http://exsample.com/rss/" . "\n";  
+の箇所を適切なアドレスに変更します。  
 
-�Q�Fcron.php�����J�̃G���A�ɐݒu���Ă��������B  
-�R�Fcron.php��cron�ɓo�^���Ă��������B  
-�ȉ��͎��̐ݒ�ł��B  
+２：cron.phpを非公開のエリアに設置してください。  
+３：cron.phpをcronに登録してください。  
+以下は私の設定です。  
   
 0,30 * * * * /usr/bin/php /xxx/rss/cron.php  
   
-�S�Fconfig.php��DB�ڑ��ݒ��ύX���܂��B  
+４：config.phpのDB接続設定を変更します。  
 
-�T�F�t����rss.sql��MySQL�ɗ����ăe�[�u�����쐬  
+５：付属のrss.sqlをMySQLに流してテーブルを作成  
 
-�U�F����`�F�b�N  
+６：動作チェック  
 
-�ȏ�  
+以上  
 
-�Q�l�ɂ����T�C�g�A�g�p�����R���|�[�l���g�Ȃ�  
-[�y�[�W�l�[�V�����N���X](http://www4.osk.3web.ne.jp/~nisitatu/pagination.html "�y�[�W�l�[�V�����N���X")
+参考にしたサイト、使用したコンポーネントなど  
+[ページネーションクラス](http://www4.osk.3web.ne.jp/~nisitatu/pagination.html "ページネーションクラス")
 [QRcode Perl CGI & PHP scripts ver. 0.50](http://www.swetake.com/qr/qr_cgi.html "QRcode Perl CGI & PHP scripts ver. 0.50")
 [MagpieRSS](http://sourceforge.net/projects/magpierss/files/ "MagpieRSS")
-[�ȒP���O�C���N���X](http://turi2.net/blog/709.html "�ȒP���O�C���N���X")
-[�z��f�[�^����C�ɃN���X�T�C�g�X�N���v�e�B���O�΍􂷂�֐�(php)](http://soft.fpso.jp/develop/php/entry_1891.html "�z��f�[�^����C�ɃN���X�T�C�g�X�N���v�e�B���O�΍􂷂�֐�(php)")
-[cookie���g���Ȃ��ꍇ�̃Z�b�V�����ɂ���](http://php.cheetan.net/community/forum/categories/2/topics/373/1.html "cookie���g���Ȃ��ꍇ�̃Z�b�V�����ɂ���")
-[PHP �ŃZ�b�V�����ϐ��ACookie ���g�p����ۂ̃Z�L�����e�B�΍�ɂ���](http://www.asahi-net.or.jp/~wv7y-kmr/memo/php_security.html#PHP_Session "PHP �ŃZ�b�V�����ϐ��ACookie ���g�p����ۂ̃Z�L�����e�B�΍�ɂ���")
+[簡単ログインクラス](http://turi2.net/blog/709.html "簡単ログインクラス")
+[配列データを一気にクロスサイトスクリプティング対策する関数(php)](http://soft.fpso.jp/develop/php/entry_1891.html "配列データを一気にクロスサイトスクリプティング対策する関数(php)")
+[cookieが使えない場合のセッションについて](http://php.cheetan.net/community/forum/categories/2/topics/373/1.html "cookieが使えない場合のセッションについて")
+[PHP でセッション変数、Cookie を使用する際のセキュリティ対策について](http://www.asahi-net.or.jp/~wv7y-kmr/memo/php_security.html#PHP_Session "PHP でセッション変数、Cookie を使用する際のセキュリティ対策について")
