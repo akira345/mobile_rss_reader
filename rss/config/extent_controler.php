@@ -62,4 +62,4 @@ class CMyController extends CController
 	}
 
 }
-?>
+?>

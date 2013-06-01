@@ -77,4 +77,3 @@ function check_secure( &$controller )
     }
 }
 ?>
-

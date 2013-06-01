@@ -17,4 +17,3 @@ class Clogin_his extends CModel{
 		}
 	}
 }
-

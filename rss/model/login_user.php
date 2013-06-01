@@ -390,4 +390,3 @@ class Clogin_user extends CModel{
 	}
 
 }
-
