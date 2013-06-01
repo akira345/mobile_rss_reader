@@ -1,12 +1,12 @@
 
 --
--- ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹: `rss`
+-- ¥Ç¡¼¥¿¥Ù¡¼¥¹: `rss`
 --
 
 -- --------------------------------------------------------
 
 --
--- ãƒ†ãƒ¼ãƒ–ãƒ«ã®æ§‹é€  `category`
+-- ¥Æ¡¼¥Ö¥ë¤Î¹½Â¤ `category`
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 -- --------------------------------------------------------
 
 --
--- ãƒ†ãƒ¼ãƒ–ãƒ«ã®æ§‹é€  `login_his`
+-- ¥Æ¡¼¥Ö¥ë¤Î¹½Â¤ `login_his`
 --
 
 CREATE TABLE IF NOT EXISTS `login_his` (
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `login_his` (
 -- --------------------------------------------------------
 
 --
--- ãƒ†ãƒ¼ãƒ–ãƒ«ã®æ§‹é€  `login_user`
+-- ¥Æ¡¼¥Ö¥ë¤Î¹½Â¤ `login_user`
 --
 
 CREATE TABLE IF NOT EXISTS `login_user` (
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `login_user` (
 -- --------------------------------------------------------
 
 --
--- ãƒ†ãƒ¼ãƒ–ãƒ«ã®æ§‹é€  `rss_data`
+-- ¥Æ¡¼¥Ö¥ë¤Î¹½Â¤ `rss_data`
 --
 
 CREATE TABLE IF NOT EXISTS `rss_data` (
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `rss_data` (
 -- --------------------------------------------------------
 
 --
--- ãƒ†ãƒ¼ãƒ–ãƒ«ã®æ§‹é€  `wk_send_rss`
+-- ¥Æ¡¼¥Ö¥ë¤Î¹½Â¤ `wk_send_rss`
 --
 
 CREATE TABLE IF NOT EXISTS `wk_send_rss` (

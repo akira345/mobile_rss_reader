@@ -1,1 +1,16 @@
-<?php	require_once( "./config/config.php" );	require_once( "../cheetan/cheetan.php" );//ƒ†[ƒU”FØ‚ð‚©‚¯‚éfunction is_secure(&$c){	return true;}function action( &$c ){//ƒRƒ“ƒgƒ[ƒ‰	$id = $_SESSION["RSS"]["USER"]["id"];	$c->set("last_login",$c->login_his->last_login($id),TRUE);//ƒeƒ“ƒvƒŒ[ƒgƒtƒ@ƒCƒ‹Žw’è	$c->SetViewFile( "./tmplate/main.html" );}?>
+<?php
+	require_once( "./config/config.php" );
+	require_once( "../cheetan/cheetan.php" );
+//¥æ¡¼¥¶Ç§¾Ú¤ò¤«¤±¤ë
+function is_secure(&$c){
+	return true;
+}
+function action( &$c )
+{
+//¥³¥ó¥È¥í¡¼¥é
+	$id = $_SESSION["RSS"]["USER"]["id"];
+	$c->set("last_login",$c->login_his->last_login($id),TRUE);
+//¥Æ¥ó¥×¥ì¡¼¥È¥Õ¥¡¥¤¥ë»ØÄê
+	$c->SetViewFile( "./tmplate/main.html" );
+}
+?>

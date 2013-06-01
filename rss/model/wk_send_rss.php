@@ -1,7 +1,7 @@
 <?php
-//ƒe[ƒuƒ‹wk_send_rss‚Ìƒ‚ƒfƒ‹
+//¥Æ¡¼¥Ö¥ëwk_send_rss¤Î¥â¥Ç¥ë
 class Cwk_send_rss extends CModel
 {
-	//¡‚Ì‚Æ‚±‚ë‚Í‰½‚à‚È‚¢
+	//º£¤Î¤È¤³¤í¤Ï²¿¤â¤Ê¤¤
 }
 ?>
