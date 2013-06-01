@@ -13,4 +13,4 @@ function action( &$c )
 //テンプレートファイル指定
 	$c->SetViewFile( "./tmplate/main.html" );
 }
-?>
+?>

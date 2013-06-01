@@ -20,4 +20,4 @@ function action( &$c )
 		echo $c->login_user->show_msg();
 	}
 }
-?>
+?>

@@ -64,4 +64,4 @@ function action( &$c )
 	//テンプレートファイル指定
 	$c->SetViewFile( "./tmplate/view_his.html" );
 }
-?>
+?>

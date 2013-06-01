@@ -119,4 +119,4 @@ function action( &$c )
 	//Get¤Ê¤·
 	}
 }
-?>
+?>

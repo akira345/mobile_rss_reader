@@ -10,4 +10,3 @@ $z->set_module_size(2);              # set module size 3pixel
 $z->qrcode_image_out($data,"png");
 #$z->image_out($z->cal_qrcode($data),"png");   #old style
 ?>
-

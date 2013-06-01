@@ -175,4 +175,4 @@ function action( &$c )
 //テンプレートファイル指定
 	$c->SetViewFile( "./tmplate/edit_rss.html" );
 }
-?>
+?>

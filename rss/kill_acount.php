@@ -29,4 +29,4 @@ function action( &$c )
 //テンプレートファイル指定
 	$c->SetViewFile( "./tmplate/kill_acount.html" );
 }
-?>
+?>

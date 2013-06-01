@@ -75,4 +75,4 @@ function action( &$c )
 //テンプレートファイル指定
 	$c->SetViewFile( "./tmplate/mb_main.html" );
 }
-?>
+?>

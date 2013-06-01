@@ -52,4 +52,4 @@ function action( &$c )
 //テンプレートファイル指定
 	$c->SetViewFile( "./tmplate/del_ok.html" );
 }
-?>
+?>

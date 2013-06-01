@@ -135,4 +135,4 @@ function action( &$c )
 //テンプレートファイル指定
 	$c->SetViewFile( "./tmplate/add_rss.html" );
 }
-?>
+?>

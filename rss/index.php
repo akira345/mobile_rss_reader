@@ -21,4 +21,3 @@ function action( &$c )
 		$c->redirect('login.php');
 	}
 }
-

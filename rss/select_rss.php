@@ -37,4 +37,4 @@ function action( &$c )
 	}
 	//get¤Ê¤·
 }
-?>
+?>

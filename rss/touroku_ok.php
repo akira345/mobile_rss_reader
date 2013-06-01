@@ -11,4 +11,4 @@ function action( &$c )
 //テンプレートファイル指定
 	$c->SetViewFile( "./tmplate/touroku_ok.html" );
 }
-?>
+?>
