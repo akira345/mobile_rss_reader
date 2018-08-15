@@ -1,14 +1,14 @@
 <?php
 	require_once( "./config/config.php" );
 	require_once( "../cheetan/cheetan.php" );
-//¥æ¡¼¥¶Ç§¾Ú¤ò¤«¤±¤ë
+//ãƒ¦ãƒ¼ã‚¶èªè¨¼ã‚’ã‹ã‘ã‚‹
 function is_secure(&$c){
 	return true;
 }
 function action( &$c )
 {
 
-//¥Æ¥ó¥×¥ì¡¼¥È¥Õ¥¡¥¤¥ë»ØÄê
+//ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«æŒ‡å®š
 	$c->SetViewFile( "./tmplate/touroku_ok.html" );
 }
 ?>

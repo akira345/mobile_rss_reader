@@ -1,4 +1,4 @@
-<p>���ӣңӣӥ꡼����������<br><br>�ңӣӤ���Ͽ����<br>
+<p>携帯ＲＳＳリーダ管理画面<br><br>ＲＳＳを登録する<br>
 <form action="./add_rss.php" method="POST">
 <table border="1" cellspacing="0" cellpadding="0" width="100%">
   <tr>
@@ -6,41 +6,41 @@
     <td width="85%"><input size="100" name="rss_url" <?php echo $c->mylib->set_ime("IME_OFF")?> value="<?php echo $data["rss_url"]?>"></td>
   </tr>
   <tr>
-    <td width="15%">�����ȡ�</td>
+    <td width="15%">コメント：</td>
     <td width="85%"><input size="40" name="comment" <?php echo $c->mylib->set_ime("IME_ON")?> value="<?php echo $data["comment"]?>"></td>
   </tr>
   <tr>
-    <td width="15%">�����Ѵ���</td>
-    <td width="85%"><?php echo $c->mylib->make_chkbox($data["cnv_keitai"],"cnv_keitai");?>(ɽ�������ڡ������У��ѤΥڡ����ξ��ϥ����å�������롣��</td>
+    <td width="15%">携帯変換：</td>
+    <td width="85%"><?php echo $c->mylib->make_chkbox($data["cnv_keitai"],"cnv_keitai");?>(表示されるページがＰＣ用のページの場合はチェックを入れる。）</td>
   </tr>
   <tr>
-    <td width="15%">����ɽ�������</td>
-    <td width="85%"><input size="4" maxlength="3" name="view_cnt" <?php echo $c->mylib->set_ime("IME_OFF")?> value="<?php echo $data["view_cnt"]?>">(̵���¤ξ��ϥ��������)</td>
+    <td width="15%">一覧表示件数：</td>
+    <td width="85%"><input size="4" maxlength="3" name="view_cnt" <?php echo $c->mylib->set_ime("IME_OFF")?> value="<?php echo $data["view_cnt"]?>">(無制限の場合はゼロを指定)</td>
   </tr>
   <tr>
-    <td width="15%">���ƥ��ꡧ</td>
+    <td width="15%">カテゴリ：</td>
     <td width="85%">
 	<?php echo $c->common_lib->make_category_list($c,'category_cd',$_SESSION["RSS"]["USER"]["id"],$data["category_cd"]);?>
 	</td>
   </tr>
   <tr>
-    <td width="15%">�᡼���ۿ���</td>
-    <td width="85%"><?php echo $c->mylib->make_chkbox($data["haisin_flg"],"haisin_flg");?>(������ɤ˥ޥå�����������᡼���ۿ�������ϥ����å���������</td>
+    <td width="15%">メール配信：</td>
+    <td width="85%"><?php echo $c->mylib->make_chkbox($data["haisin_flg"],"haisin_flg");?>(キーワードにマッチした記事をメール配信する場合はチェックを入れる）</td>
   </tr>
   <tr>
-    <td width="15%">������ɡ�</td>
+    <td width="15%">キーワード：</td>
     <td width="85%">
         <textarea name="keyword" rows="4" cols="40"><?php echo $data["keyword"]?></textarea>
 <BR>
-(���ԤǶ��ڤ�ޤ�����ʸ����ʸ�����Ҥ餬�ʥ������ʡ�Ⱦ�����Ѥ϶��̤����ʤ�٤��ޥå������ޤ�����<BR>
-<font color="red">�᡼���ۿ���ǽ�ϥ᡼�륢�ɥ쥹����Ͽ����Ƥ�����ͭ���Ǥ�</font><BR>
-<font color="red">Ʊ�������ˤϺ���1��������ޤ���</font><BR>
+(改行で区切ります。大文字小文字、ひらがなカタカナ、半角全角は区別せずなるべくマッチさせます。）<BR>
+<font color="red">メール配信機能はメールアドレスが登録されている場合有効です</font><BR>
+<font color="red">同じ記事には最大1週間送りません</font><BR>
    </td>
   </tr>
 
 
 </table>
-<input type="submit" value="��Ͽ" name="submit"><br>
+<input type="submit" value="登録" name="submit"><br>
 <font color=red><?php echo $data["err"];?></font>
       <input type="hidden" name="token" value="<?php echo $data["token"]?>">
 

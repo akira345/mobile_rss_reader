@@ -1,40 +1,40 @@
 <?php
 	require_once( "./config/config.php" );
 	require_once( "../cheetan/cheetan.php" );
-//¥æ¡¼¥¶Ç§¾Ú¤ò¤«¤±¤ë
+//ãƒ¦ãƒ¼ã‚¶èªè¨¼ã‚’ã‹ã‘ã‚‹
 function is_secure(&$c){
 	return true;
 }
 function action( &$c )
 {
-//¥³¥ó¥È¥í¡¼¥é
-	//¥æ¡¼¥¶£É£Ä¥»¥Ã¥È
+//ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+	//ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤ã‚»ãƒƒãƒˆ
 	$user_id = $_SESSION["RSS"]["USER"]["id"];
 	If (count($_GET)){
-		//Get¤Ë²¿¤«Æþ¤Ã¤Æ¤¤¤ë
-		//¥Ç¡¼¥¿ÅÐÏ¿ÍÑ
+		//Getã«ä½•ã‹å…¥ã£ã¦ã„ã‚‹
+		//ãƒ‡ãƒ¼ã‚¿ç™»éŒ²ç”¨
 		$data=array();
-		//GET¥Ç¡¼¥¿¤òÆþ¤ì¤ë
+		//GETãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹
 		$data["category_cd"]=$c->s->gett("category_cd");
 		If ($data["category_cd"] != ""){
-			//¸½ºß¥«¥Æ¥´¥ê¤ÎÅÐÏ¿¤¬¤¢¤ë¤«¥Á¥§¥Ã¥¯¤¹¤ë
+			//ç¾åœ¨ã‚«ãƒ†ã‚´ãƒªã®ç™»éŒ²ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 			$tmp = array(
 						'id' => $user_id,
 						'category_cd' => $data["category_cd"],
 						'hidden_chk' => '0'
 					);
 			if ($c->rss_data->getcount($tmp) >0){
-				//¥Ç¡¼¥¿È¯¸«
-				$c->set("rss_datas", $c->rss_data->find($tmp, "no ASC" ));	//NO¤Ç¾º½ç¤Ë¥½¡¼¥È
+				//ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹
+				$c->set("rss_datas", $c->rss_data->find($tmp, "no ASC" ));	//NOã§æ˜‡é †ã«ã‚½ãƒ¼ãƒˆ
 			}else{
-			//¤Ç¡¼¤¿¤Ê¤·
-				$c->set("err","ÅÐÏ¿¤Ï¤¢¤ê¤Þ¤»¤ó");
+			//ã§ãƒ¼ãŸãªã—
+				$c->set("err","ç™»éŒ²ã¯ã‚ã‚Šã¾ã›ã‚“");
 			}
-			//¥Æ¥ó¥×¥ì¡¼¥È¥Õ¥¡¥¤¥ë»ØÄê
+			//ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«æŒ‡å®š
 			$c->SetViewFile( "./tmplate/select_rss.html" );
 		}
-		//get¤Ê¤·
+		//getãªã—
 	}
-	//get¤Ê¤·
+	//getãªã—
 }
 ?>

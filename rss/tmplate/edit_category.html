@@ -1,7 +1,7 @@
-<p>╔╚╔ф╔╢╔Й╢имЩ╡Хлл<br><br>╔╚╔ф╔╢╔Й╓Репо©╓╥╓ч╓╧║ё<br>
+<p>Ц┌╚Ц┐├Ц┌╢Ц┐╙Г╝║Г░├Г■╩И²╒<br><br>Ц┌╚Ц┐├Ц┌╢Ц┐╙Ц┌▓Г≥╩И▄╡Ц│≈Ц│╬Ц│≥Ц─┌<br>
 <form action="./add_category.php" method="POST">
 <input name="category_name">
-<input type="submit" value="епо©" name="submit"><br>
+<input type="submit" value="Г≥╩И▄╡" name="submit"><br>
 <font color=red><?php echo $data["err"];?></font>
 <input type="hidden" name="token" value="<?php echo $data["token"]?>">
 </form>
@@ -10,26 +10,26 @@
 <hr>
 <br>
 
-<p>╦╫╨ъепо©╓╣╓Л╓ф╓╓╓К╔╚╔ф╔╢╔Й╓о╟й╡╪╓н╓х╓╙╓Й╓г╓╧║ё<br><br>
+<p>Г▐╬Е°╗Г≥╩И▄╡Ц│∙Ц┌▄Ц│╕Ц│└Ц┌▀Ц┌╚Ц┐├Ц┌╢Ц┐╙Ц│╞Д╩╔Д╦▀Ц│╝Ц│╗Ц│┼Ц┌┼Ц│╖Ц│≥Ц─┌<br><br>
 
 
 
 <table cellspacing="0" cellpadding="0" width="75%" border="1">
   <tbody>
 <?php foreach( $data["datas"] as $var ){ 
-	$i += 1;	//╔╚╔╕╔С╔©
+	$i += 1;	//Ц┌╚Ц┌╕Ц┐ЁЦ┌©
 ?>
 <tr bgcolor="#FFEEEE">
 <form action="./edit_category.php" method="POST">
 
     <td valign="top" width="3%" align="right">
       <p align="center">No</p></td>
-    <td>╔╚╔ф╔╢╔Й</td>
-    <td align="center">╧╧©╥</td>
-    <td align="center">╨О╫Э</td>
+    <td>Ц┌╚Ц┐├Ц┌╢Ц┐╙</td>
+    <td align="center">Ф⌡╢Ф√╟</td>
+    <td align="center">Е┴┼И≥╓</td>
 </tr>
 <?php
-//╧╧©╥╔Л╔Ё║╪╔и╓н©╖╓Рйя╓╗╓ф╓ъ╓К
+//Ф⌡╢Ф√╟Ц┐╛Ц┌ЁЦ┐╪Ц┐┴Ц│╝Х┴╡Ц┌▓Е╓┴Ц│┬Ц│╕Ц│©Ц┌▀
 	If ($var["no"] == $data["change_no"]){
 		echo "<tr bgcolor=orange>";
 	}else{
@@ -38,15 +38,15 @@
 ?>
 	<!--NO-->
     <td valign="right" align="right"><?php echo $i?></td>
-	<!--╔╚╔ф╔╢╔Й-->
-	<td><input size="43" name="category_name" value="<?php echo $var["category"];?>" <?php echo $c->mylib->set_ime("IME_ON")?>>║║</td>
-	<!--╧╧©╥╔э╔©╔С-->
+	<!--Ц┌╚Ц┐├Ц┌╢Ц┐╙-->
+	<td><input size="43" name="category_name" value="<?php echo $var["category"];?>" <?php echo $c->mylib->set_ime("IME_ON")?>>Ц──</td>
+	<!--Ф⌡╢Ф√╟Ц┐°Ц┌©Ц┐Ё-->
     <td>
-      <p align="center"><input type="submit" value="╧╧©╥" name="update"></p>
+      <p align="center"><input type="submit" value="Ф⌡╢Ф√╟" name="update"></p>
 	</td>
-	<!--╨О╫Э╔э╔©╔С-->
+	<!--Е┴┼И≥╓Ц┐°Ц┌©Ц┐Ё-->
     <td>
-      <p align="center"><input type="submit" value="╨О╫Э" name="del"></p>
+      <p align="center"><input type="submit" value="Е┴┼И≥╓" name="del"></p>
 	</td>
       <input type="hidden" name="no" value="<?php echo $var["no"];?>">
       <input type="hidden" name="token" value="<?php echo $data["token"]?>">

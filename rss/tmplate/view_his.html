@@ -1,52 +1,52 @@
 <center>
-<!--¥¿¥¤¥È¥ë-->
-	<h3>¥¢¥¯¥»¥¹ÍúÎò</h3>
+<!--ã‚¿ã‚¤ãƒˆãƒ«-->
+	<h3>ã‚¢ã‚¯ã‚»ã‚¹å±¥æ­´</h3>
 </center>
 <hr>
 <BR>
-<!--¥Ú¡¼¥¸¥ó¥°-->
+<!--ãƒšãƒ¼ã‚¸ãƒ³ã‚°-->
 <?php echo $pager?>
 <BR>
 <table cellspacing="0" cellpadding="0" width=500 border="1">
 <tr bgcolor="#FFEEEE">
     <td valign="top" width="5%" align="right">
       <p align="center">No</p></td>
-    <td width="15%">ÅÐÏ¿Æü</td>
-    <td width="15%">ÅÐÏ¿»þ¹ï</td>
-    <td width="30%">ÆâÍÆ</td>
+    <td width="15%">ç™»éŒ²æ—¥</td>
+    <td width="15%">ç™»éŒ²æ™‚åˆ»</td>
+    <td width="30%">å†…å®¹</td>
     <td width="20%">IP</td>
-    <td width="15%">¥¢¥¯¥»¥¹¸µ</td>
+    <td width="15%">ã‚¢ã‚¯ã‚»ã‚¹å…ƒ</td>
 </tr>
 
 <?php foreach( $data["datas"] as $var ){ 
-	$i += 1;	//¥«¥¦¥ó¥¿
+	$i += 1;	//ã‚«ã‚¦ãƒ³ã‚¿
 ?>
 <tr bgcolor=#EEFFEE>
 	<!--NO-->
     <td valign="right" align="right"><?php echo $i?></td>
-	<!--ÅÐÏ¿Æü-->
+	<!--ç™»éŒ²æ—¥-->
     <td valign="center" align="center"><?php echo date("Y/m/d",strtotime($var["touroku_date"]))?></td>
-	<!--ÅÐÏ¿»þ¹ï-->
+	<!--ç™»éŒ²æ™‚åˆ»-->
     <td valign="center" align="center"><?php echo date("H:i:s",strtotime($var["touroku_time"]))?></td>
-	<!--ÆâÍÆ-->
-    <td>¡¡<?php echo $var["memo"]?></td>
-	<!--£É£Ð-->
+	<!--å†…å®¹-->
+    <td>ã€€<?php echo $var["memo"]?></td>
+	<!--ï¼©ï¼°-->
     <td valign="center" align="center"><?php echo $var["ip"]?>
 	<?php
-	//¥Û¥¹¥ÈÌ¾¤¬°ú¤±¤¿¤éÉ½¼¨
+	//ãƒ›ã‚¹ãƒˆåãŒå¼•ã‘ãŸã‚‰è¡¨ç¤º
 	$host = gethostbyaddr($var["ip"]);
 	 if($var["ip"] <> $host){
 	?>
 		<BR>(<?php echo $host; ?>)
 	<?php } ?>
 	</td>
-	<!--¥¢¥¯¥»¥¹¸µ-->
+	<!--ã‚¢ã‚¯ã‚»ã‚¹å…ƒ-->
     <td valign="center" align="center">
 		<?php
 			If($var["kyaria_cd"]>0){
-				echo "·ÈÂÓ";
+				echo "æºå¸¯";
 			}else{
-				echo "£Ð£Ã";
+				echo "ï¼°ï¼£";
 			}
 		?>
 	</td>
@@ -55,6 +55,6 @@
 
 </table>
 <BR>
-<!--¥Ú¡¼¥¸¥ó¥°-->
+<!--ãƒšãƒ¼ã‚¸ãƒ³ã‚°-->
 <?php echo $pager ?>
 

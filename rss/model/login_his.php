@@ -1,6 +1,6 @@
 <?php
 class Clogin_his extends CModel{
-//¥¢¥«¥¦¥ó¥È´ÉÍı¥â¥Ç¥ë
+//ã‚¢ã‚«ã‚¦ãƒ³ãƒˆç®¡ç†ãƒ¢ãƒ‡ãƒ«
 	function last_login($id){
 		$tmp = array();
 		$tmp = array(
@@ -11,9 +11,9 @@ class Clogin_his extends CModel{
 
 			$results = $this->findquery( $query, $tmp );
 			$results = $this->findone("id='" . $this->escape($id) ."' AND no < " . $this->escape($results[0]["MAX_NO"])  , "no DESC" );
-			return "ºÇ½ª¥¢¥¯¥»¥¹¤Ï" . date("Y/m/d",strtotime($results["touroku_date"])) . "¡¡" . date("H:i:s",strtotime($results["touroku_time"])) . "¤Ç¤¹¡£<br>";
+			return "æœ€çµ‚ã‚¢ã‚¯ã‚»ã‚¹ã¯" . date("Y/m/d",strtotime($results["touroku_date"])) . "ã€€" . date("H:i:s",strtotime($results["touroku_time"])) . "ã§ã™ã€‚<br>";
 		}else{
-			return "½é²ó¥í¥°¥¤¥ó¤Ç¤¹¡£<BR>";
+			return "åˆå›ãƒ­ã‚°ã‚¤ãƒ³ã§ã™ã€‚<BR>";
 		}
 	}
 }

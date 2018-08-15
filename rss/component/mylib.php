@@ -1,14 +1,14 @@
 <?php
-//¼«Ê¬ÍÑ¥¯¥é¥¹¥é¥¤¥Ö¥é¥ê
+//è‡ªåˆ†ç”¨ã‚¯ãƒ©ã‚¹ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 
 class mylib{
-	//µ¡¼ïÈ½Äê´Ø¿ô
-	//ÌáÃÍ¡§£±¡§DoCoMo 2:Au 3:SoftBank 0:¤½¤ÎÂ¾(PC)
+	//æ©Ÿç¨®åˆ¤å®šé–¢æ•°
+	//æˆ»å€¤ï¼šï¼‘ï¼šDoCoMo 2:Au 3:SoftBank 0:ãã®ä»–(PC)
 	function chk_mobile(){
-	//Ãí°Õ¡ªÄÉ²Ã¤¹¤ëºİ¡¢J-PHONE´ØÏ¢¤ÏAU¤è¤êÀè¤ËÈ½Äê¤¹¤ë¤³¤È¡ª¡ª
-	//      (VodaFone¤Î°ìÉôµ¡¼ï¤ËUP.Browser¤òÊÖ¤¹¤â¤Î¤¬¤¢¤ë¤¿¤á
+	//æ³¨æ„ï¼è¿½åŠ ã™ã‚‹éš›ã€J-PHONEé–¢é€£ã¯AUã‚ˆã‚Šå…ˆã«åˆ¤å®šã™ã‚‹ã“ã¨ï¼ï¼
+	//      (VodaFoneã®ä¸€éƒ¨æ©Ÿç¨®ã«UP.Browserã‚’è¿”ã™ã‚‚ã®ãŒã‚ã‚‹ãŸã‚
 	
-		//¥æ¡¼¥¶¡¼¥¨¡¼¥¸¥§¥ó¥È¼èÆÀ
+		//ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆå–å¾—
 		$IN_AGENT = $_SERVER["HTTP_USER_AGENT"];
 	
 		If ( preg_match( "/DoCoMo/", $IN_AGENT) ) {
@@ -28,7 +28,7 @@ class mylib{
 			Return 3;
 			exit;
 		} Else If ( preg_match( "/MOT-/",$IN_AGENT)) {
-			//SoftBank ¥â¥È¥í¡¼¥é
+			//SoftBank ãƒ¢ãƒˆãƒ­ãƒ¼ãƒ©
 			Return 3;
 			exit; 
 		} Else If ( preg_match( "/UP\.Browser/", $IN_AGENT)) {
@@ -40,15 +40,15 @@ class mylib{
 			Return 2;
 			exit;
 		} Else {
-			//¤½¤ÎÂ¾(PC)
+			//ãã®ä»–(PC)
 			Return 0;
 			Exit;
 		}
 	}
 	
 	function set_ime($par){
-		//IMEÀ©¸æ
-		//¥­¥ã¥ê¥¢È½ÊÌ
+		//IMEåˆ¶å¾¡
+		//ã‚­ãƒ£ãƒªã‚¢åˆ¤åˆ¥
 		$kyaria = $this->chk_mobile();
 		If ($kyaria===0){
 			//PC
@@ -65,16 +65,16 @@ class mylib{
 			}
 		}
 		If ($kyaria === 1 || $kyaria === 2){
-			//DoCoMo¤ÈAU
+			//DoCoMoã¨AU
 			switch ($par) {
 			    case "IME_ON":
 				return "istyle=\"1\"";
 			        break;
 			    case "IME_OFF":
-			        return "istyle=\"3\"";//PCÈÇ¤Ë¤¢¤ï¤»¤ë¤¿¤á¡¢È¾³Ñ±Ñ»ú¤Ë¤¹¤ë¡£
+			        return "istyle=\"3\"";//PCç‰ˆã«ã‚ã‚ã›ã‚‹ãŸã‚ã€åŠè§’è‹±å­—ã«ã™ã‚‹ã€‚
 			        break;
 				case "NUMBER":
-			        return "istyle=\"4\"";//·ÈÂÓ¤Î¤ß¡£
+			        return "istyle=\"4\"";//æºå¸¯ã®ã¿ã€‚
 			        break;
 			    default:
 			        break;
@@ -88,10 +88,10 @@ class mylib{
 				return "mode=\"hiragana\"";
 			        break;
 			    case "IME_OFF":
-			        return "mode=\"alphabet\"";//PCÈÇ¤Ë¤¢¤ï¤»¤ë¤¿¤á¡¢È¾³Ñ±Ñ»ú¤Ë¤¹¤ë¡£
+			        return "mode=\"alphabet\"";//PCç‰ˆã«ã‚ã‚ã›ã‚‹ãŸã‚ã€åŠè§’è‹±å­—ã«ã™ã‚‹ã€‚
 			        break;
 				case "NUMBER":
-			        return "mode=\"numeric\"";//·ÈÂÓ¤Î¤ß¡£
+			        return "mode=\"numeric\"";//æºå¸¯ã®ã¿ã€‚
 			        break;
 			    default:
 			        break;
@@ -100,20 +100,20 @@ class mylib{
 		}
 	}
 	
-	//²ş¹Ô¥³¡¼¥É¤ò<BR>¥¿¥°¤Ë¤¹¤ë
+	//æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’<BR>ã‚¿ã‚°ã«ã™ã‚‹
 	function cr_to_br($IN_STR){
 		$IN_STR = str_replace("\r\n", "<br>", $IN_STR);
 		$IN_STR = str_replace("\r", "<br>", $IN_STR);
 		$IN_STR = str_replace("\n", "<br>", $IN_STR);
 		return $IN_STR;
 	}
-	//ÁªÂò¥×¥ë¥À¥¦¥ó¥á¥Ë¥å¡¼¤òºîÀ®¡£
-	//°ú¿ô¡§¥×¥ë¥À¥¦¥ó¤ÎÌ¾Á°¡¢ºÇ¾®ÃÍ¡¢ºÇÂçÃÍ¡¢É½¼¨No
+	//é¸æŠãƒ—ãƒ«ãƒ€ã‚¦ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä½œæˆã€‚
+	//å¼•æ•°ï¼šãƒ—ãƒ«ãƒ€ã‚¦ãƒ³ã®åå‰ã€æœ€å°å€¤ã€æœ€å¤§å€¤ã€è¡¨ç¤ºNo
 	function value_list($name,$min_no,$max_no,$set_no){
 	$ret = "<SELECT name=\"" . $name . "\">" . "\r\n";
 		for($i=$min_no;$i<=$max_no;$i++){
 			If ($i == $set_no){
-				//°ìÃ×¤·¤¿¤é
+				//ä¸€è‡´ã—ãŸã‚‰
 				$ret .= "<OPTION value=\"" . $i ."\" selected>" . $i . "</OPTION>" . "\r\n";
 			}else{
 				$ret .= "<OPTION value=\"" . $i ."\">" . $i . "</OPTION>" . "\r\n";
@@ -123,8 +123,8 @@ class mylib{
 	return $ret;
 	}
 	
-	//¥Á¥§¥Ã¥¯¥Ü¥Ã¥¯¥¹¤òÉ½¼¨¤¹¤ë
-	//°ú¿ô¡§£±¡§¥Á¥§¥Ã¥¯¤¢¤ê ¤½¤ì°Ê³°¡§¥Á¥§¥Ã¥¯¤Ê¤·¡¡¥Á¥§¥Ã¥¯¥Ü¥Ã¥¯¥¹¤ÎÌ¾Á°¡¢¥Á¥§¥Ã¥¯¤µ¤ì¤¿¤È¤­¤ÎÃÍ
+	//ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ã‚’è¡¨ç¤ºã™ã‚‹
+	//å¼•æ•°ï¼šï¼‘ï¼šãƒã‚§ãƒƒã‚¯ã‚ã‚Š ãã‚Œä»¥å¤–ï¼šãƒã‚§ãƒƒã‚¯ãªã—ã€€ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ã®åå‰ã€ãƒã‚§ãƒƒã‚¯ã•ã‚ŒãŸã¨ãã®å€¤
 	function make_chkbox($in_cd,$in_name,$in_value = 1){
 		if ($in_cd == 1){
 			$tmp = "CHECKED";
@@ -133,27 +133,27 @@ class mylib{
 		}
 		return "<input type=\"checkbox\" " . $tmp . " value=\"" . $in_value . "\" name=\"" . $in_name . "\">";
 	}
-	//ºÆµ¢Åª¤Ëmb_convert_kana¤ò¸Æ¤Ó½Ğ¤¹´Ø¿ôÄêµÁ
-	//°ú¿ô¤Ïmb_convert_kana¤ÈÆ±¤¸¡ÊÂè°ì°ú¿ô¤¬ÊÑ¿ô¤Ç¤âÇÛÎó¤Ç¤âOK¡Ë
+	//å†å¸°çš„ã«mb_convert_kanaã‚’å‘¼ã³å‡ºã™é–¢æ•°å®šç¾©
+	//å¼•æ•°ã¯mb_convert_kanaã¨åŒã˜ï¼ˆç¬¬ä¸€å¼•æ•°ãŒå¤‰æ•°ã§ã‚‚é…åˆ—ã§ã‚‚OKï¼‰
 	function mb_convert_kana_variables($value,$option, $encoding){
-	//http://soft.fpso.jp/develop/php/entry_1891.html¤ò»²¹Í¤ËºîÀ®¤·¤Æ¤ß¤¿
+	//http://soft.fpso.jp/develop/php/entry_1891.htmlã‚’å‚è€ƒã«ä½œæˆã—ã¦ã¿ãŸ
 		If (is_array($value)){
-		//ÇÛÎó¤Ê¤é
+		//é…åˆ—ãªã‚‰
 			foreach ($value as $key => $val){
-				//ÇÛÎó¤òÅ¸³«¤¹¤ë
+				//é…åˆ—ã‚’å±•é–‹ã™ã‚‹
 				If (is_array($val)){
-					//Å¸³«¤·¤¿ÃÍ¤¬ÇÛÎó¤À¤Ã¤¿
-					//ºÆµ¢Åª¤Ë¸Æ¤Ó½Ğ¤¹
+					//å±•é–‹ã—ãŸå€¤ãŒé…åˆ—ã ã£ãŸ
+					//å†å¸°çš„ã«å‘¼ã³å‡ºã™
 					$val = mb_convert_kana_variables($value[$key],$option, $encoding);
 				}else{
 					$val = mb_convert_kana($val,$option, $encoding);
 				}
-				//Å¸³«¤·¤¿ÇÛÎó¤ò¸µ¤ËÌá¤¹
+				//å±•é–‹ã—ãŸé…åˆ—ã‚’å…ƒã«æˆ»ã™
 				$value[$key] = $val;
 			}
 			return $value;
 		}else{
-			//ÇÛÎó¤Ç¤Ï¤Ê¤¤
+			//é…åˆ—ã§ã¯ãªã„
 			return mb_convert_kana($value,$option, $encoding);
 		}
 	}

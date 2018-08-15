@@ -1,55 +1,55 @@
 <?php
-//´ÊÃ±¥í¥°¥¤¥ó´ØÏ¢
-//ËÜÅö¤ÏIP¤Ç¤Á¤ã¤ó¤ÈÄ´¤Ù¤Ê¤¤¤È¤¤¤±¤Ê¤¤¤¬¡¢´Ê°×ÈÇ¤È¤¹¤ë¡£
+//ç°¡å˜ãƒ­ã‚°ã‚¤ãƒ³é–¢é€£
+//æœ¬å½“ã¯IPã§ã¡ã‚ƒã‚“ã¨èª¿ã¹ãªã„ã¨ã„ã‘ãªã„ãŒã€ç°¡æ˜“ç‰ˆã¨ã™ã‚‹ã€‚
 //
-//ËÜ¥¯¥é¥¹¤Î¥Ù¡¼¥¹¤Ïhttp://turi2.net/blog/709.html¤è¤êÇÒ¼Ú¤·¤Ş¤·¤¿¡£
+//æœ¬ã‚¯ãƒ©ã‚¹ã®ãƒ™ãƒ¼ã‚¹ã¯http://turi2.net/blog/709.htmlã‚ˆã‚Šæ‹å€Ÿã—ã¾ã—ãŸã€‚
 //
-//°Ê²¼¤Î¤è¤¦¤ÊHTML¤ò¤Ï¤Ã¤Æ¤ª¤¯
-//<!-- formÍ×ÁÇ¤Î¾ì¹ç -->
+//ä»¥ä¸‹ã®ã‚ˆã†ãªHTMLã‚’ã¯ã£ã¦ãŠã
+//<!-- formè¦ç´ ã®å ´åˆ -->
 //<form method="POST" action="./ktest.php" utn>
-//  <input type="submit" value="¥í¥°¥¤¥ó" />
+//  <input type="submit" value="ãƒ­ã‚°ã‚¤ãƒ³" />
 //</form>
 //
 class MobileInformation{
 
 
-	var $_UserAgent;	//¥æ¡¼¥¶¥¨¡¼¥¸¥§¥ó¥È
+	var $_UserAgent;	//ãƒ¦ãƒ¼ã‚¶ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆ
 
 	function MobileInformation(){
-	//¥³¥ó¥¹¥È¥é¥¯¥¿
-	//¥æ¡¼¥¶¥¨¡¼¥¸¥§¥ó¥È¤ò¥»¥Ã¥È¤¹¤ë¤À¤±
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	//ãƒ¦ãƒ¼ã‚¶ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã ã‘
 		$this->_UserAgent = $_SERVER["HTTP_USER_AGENT"];
 
 	}
 
-	//¸ÇÂÎ¼±ÊÌÈÖ¹æ¤Î¼èÆÀ
+	//å›ºä½“è­˜åˆ¥ç•ªå·ã®å–å¾—
 	function IndividualNum(){
 		$line = "";
 		$edline = 0;
 		$agent = $this->_UserAgent;
 		$len = strlen($agent);
-		$rtn = 0;//Ìá¤êÃÍ
-		$prob = mylib::chk_mobile();//¥­¥ã¥ê¥¢È½Äê
+		$rtn = 0;//æˆ»ã‚Šå€¤
+		$prob = mylib::chk_mobile();//ã‚­ãƒ£ãƒªã‚¢åˆ¤å®š
 		//
 		switch($prob){
 			case 2:
 			//AU
 				if($_SERVER['HTTP_X_UP_SUBNO'] !== ''){
-					//¸ÇÂÎ¼±ÊÌÈÖ¹æ¤¬Æş¤Ã¤Æ¤¤¤¿¤é¼èÆÀ
+					//å›ºä½“è­˜åˆ¥ç•ªå·ãŒå…¥ã£ã¦ã„ãŸã‚‰å–å¾—
 					$rtn = $_SERVER['HTTP_X_UP_SUBNO'];
 				}
 				break;
 			case 1:
 			//DoCoMo
 				if(strpos($agent, '/ser')){
-					//ÈóFOMAÃ¼ËöÍÑ
+					//éFOMAç«¯æœ«ç”¨
 					$line = strpos($agent, '/ser') + 4;
 				}
 				if(strpos($agent, ';icc')){
-					//FomaÃ¼ËöÍÑ
+					//Fomaç«¯æœ«ç”¨
 					$line = strpos($agent, ';icc') + 4;
 				}
-				//¼èÆÀ¤·¤¿¾ğÊó¤ÎÃæ¤è¤ê¥æ¡¼¥¶¥¨¡¼¥¸¥§¥ó¥È¾ğÊó¤¬¼ÙËâ¤Ê¤Î¤Ç¾Ã¤¹
+				//å–å¾—ã—ãŸæƒ…å ±ã®ä¸­ã‚ˆã‚Šãƒ¦ãƒ¼ã‚¶ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆæƒ…å ±ãŒé‚ªé­”ãªã®ã§æ¶ˆã™
 				if($line !== ''){
 					$rtn = substr($agent, $line, $len-($line+1));
 				}
@@ -57,7 +57,7 @@ class MobileInformation{
 			case 3:
 			//SoftBank
 				if(strpos($agent, '/SN')){
-				//¼èÆÀ
+				//å–å¾—
 					$line = strpos($agent, '/SN') + 3;
 				}
 				if($line !== ''){
@@ -68,7 +68,7 @@ class MobileInformation{
 				}
 				break;
 			default:
-			//¤½¤ÎÂ¾
+			//ãã®ä»–
 		}
 		return $rtn;
 	}

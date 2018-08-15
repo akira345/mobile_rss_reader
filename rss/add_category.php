@@ -1,111 +1,111 @@
 <?php
 	require_once( "./config/config.php" );
 	require_once( "../cheetan/cheetan.php" );
-//�桼��ǧ�ڤ򤫤���
+//ユーザ認証をかける
 function is_secure(&$c){
 	return true;
 }
 function action( &$c )
 {
-	//��������к�
+	//リロード対策
 	$token = sha1(uniqid(mt_rand(), true));
-	 // �ȡ�����򥻥å������ɲä���
+	 // トークンをセッションに追加する
 	$_SESSION['token'][] = $token;
-	//�桼���ɣĥ��å�
+	//ユーザＩＤセット
 	$user_id = $_SESSION["RSS"]["USER"]["id"];
-	//�ȡ���������
+	//トークンを出力
 	$c->set("token",$token,'FALSE');
 
-	//���顼��å�������(����ɽ��)
+	//エラーメッセージ用(一覧表示)
 	$err2="";
 
     if( count( $_POST ) )
     {
-	//POST�Ǥʤ����äƤ���
+	//POSTでなんか入っている
 
-	//��������к�
-		// �������줿�ȡ����󤬥��å����Υȡ������������ˤ��뤫Ĵ�٤�
+	//リロード対策
+		// 送信されたトークンがセッションのトークン配列の中にあるか調べる
 		$key = array_search($_POST['token'], $_SESSION['token']);
 
 		if ($key !== false) {
-		    // ����� POST
-		    unset($_SESSION['token'][$key]); // ���ѺѤߥȡ�������˴�
-			//�ǡ�����Ͽ��
+		    // 正常な POST
+		    unset($_SESSION['token'][$key]); // 使用済みトークンを破棄
+			//データ登録用
 			$data=array();
 
-			//���顼��å�������
+			//エラーメッセージ用
 			$err="";
 
-			//POST�ǡ����������
-			//�ơ��֥�ι���̾��Ʊ������̾�ˤ��뤳��
+			//POSTデータを入れる
+			//テーブルの項目名と同じ配列名にすること
 			$data["category"]=$c->s->postt("category_name");
 
-			//�ѥ�᥿�Υ����å�
+			//パラメタのチェック
 
-			//ɬ������
-			$err .= $c->v->notempty($data["category"],"���ƥ����ɬ�����ϤǤ�<BR>");
+			//必須入力
+			$err .= $c->v->notempty($data["category"],"カテゴリは必須入力です<BR>");
 
 			if ($err == ""){
-				//ͭ���ϰϥ����å�
-				$err .= $c->v->len($data["category"],1,256,"���ƥ���ϣ�ʸ���ʾ�256ʸ���ʲ��Ǥ�<BR>");
+				//有効範囲チェック
+				$err .= $c->v->len($data["category"],1,256,"カテゴリは１文字以上256文字以下です<BR>");
 			}
-			//ǰ�Τ����ʣ��Ͽ�����å��򤹤�
+			//念のため重複登録チェックをする
 			if ($err == ""){
 				$tmp = array(
 								'id' => $user_id,
 								'category' => $data["category"]
 							);
 				if ($c->category->getcount($tmp) >0){
-					//�ǡ���ȯ��
-					$err .= "���Ǥ�Ʊ�쥫�ƥ��꤬��Ͽ����Ƥ��ޤ�<BR>";
+					//データ発見
+					$err .= "すでに同一カテゴリが登録されています<BR>";
 				}
 			}
 
 			if ($err == ""){
-				//���顼�ʤ�
+				//エラーなし
 
-				//�桼�����󡢽���ͥ��å�
+				//ユーザ情報、初期値セット
 				$data["id"] = $user_id;
 
-				//��Ͽ�����å�
+				//登録日セット
 				$data["touroku_date"] = $c->common_lib->get_date();
 				$data["touroku_time"] = $c->common_lib->get_time();
 
-				//��Ͽ
+				//登録
 				$c->category->insert($data);
 
-				//��λ��å�����ɽ��
-				$err = "��Ͽ����λ���ޤ���";
+				//完了メッセージ表示
+				$err = "登録が完了しました";
 
-				$c->set("err",$err,'TRUE');//���顼��å������ϥ�������ON
+				$c->set("err",$err,'TRUE');//エラーメッセージはタグ出力ON
 
 			}else{
-				//���顼����
-				$c->set("err",$err,'TRUE');//���顼��å������ϥ�������ON
+				//エラーあり
+				$c->set("err",$err,'TRUE');//エラーメッセージはタグ出力ON
 
-				//�ǡ������å�
+				//データセット
 				$c->set("category_name",$data["category"]);
 
 			}
 		}
 	}
-	//�ǡ���ɽ��
-	//�ǡ�������
+	//データ表示
+	//データ検索
 	$tmp = array(
 					'id' => $user_id
 				);
 	if ($c->category->getcount($tmp) >0){
-		//�ǡ���ȯ��
-		$c->set("datas", $c->category->find($tmp, "no ASC" ));	//NO�Ǿ���˥�����
+		//データ発見
+		$c->set("datas", $c->category->find($tmp, "no ASC" ));	//NOで昇順にソート
 	}else{
-		$err2 = "��Ͽ�ǡ���������ޤ���";
+		$err2 = "登録データがありません";
 		$tmp = array();
-		$c->set("datas",$tmp);	//����������顼�ˤʤ��к�
+		$c->set("datas",$tmp);	//ゼロ件時エラーになる対策
 	}
 
-	//�ǡ������å�
-	$c->set("err2",$err2,TRUE);//���顼��å������ϥ�������ON
-//�ƥ�ץ졼�ȥե��������
+	//データセット
+	$c->set("err2",$err2,TRUE);//エラーメッセージはタグ出力ON
+//テンプレートファイル指定
 	$c->SetViewFile( "./tmplate/edit_category.html" );
 }
 ?>

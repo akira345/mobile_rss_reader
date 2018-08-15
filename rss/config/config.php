@@ -1,74 +1,74 @@
 <?php
-//DB¤ÎÀÜÂ³ÀßÄê´Ø¿ô
+//DBã®æ¥ç¶šè¨­å®šé–¢æ•°
 function config_database( &$db )
 {
 	$db->add( "", "localhost", "db_user", "db_pass", "rss" );
 }
-//¥â¥Ç¥ë¤òÄêµÁ¤¹¤ë
+//ãƒ¢ãƒ‡ãƒ«ã‚’å®šç¾©ã™ã‚‹
 function config_models( &$controller )
 {
-//dirname(__FILE__) ¤Ï¤³¤Î¥Õ¥¡¥¤¥ë¤Î¥Ñ¥¹¤¬Æş¤ë¡ÊºÇ¸å¤Î\¤Ï¤Ê¤·)
+//dirname(__FILE__) ã¯ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ãŒå…¥ã‚‹ï¼ˆæœ€å¾Œã®\ã¯ãªã—)
 	$controller->AddModel( dirname(__FILE__) . "/../model/login_user.php");
 	$controller->AddModel( dirname(__FILE__) . "/../model/rss_data.php");
 	$controller->AddModel( dirname(__FILE__) . "/../model/category.php");
 	$controller->AddModel( dirname(__FILE__) . "/../model/login_his.php");
 	$controller->AddModel( dirname(__FILE__) . "/../model/wk_send_rss.php");
 }
-//¥³¥ó¥İ¡¼¥Í¥ó¥È¤òÄêµÁ¤¹¤ë
+//ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å®šç¾©ã™ã‚‹
 function config_components( &$controller )
 {
-//¤è¤¦¤Ï¥æ¡¼¥¶ÄêµÁ¥¯¥é¥¹¤ò¼è¤ê¹ş¤à¡£Âè£²°ú¿ô¤Ï¥¯¥é¥¹Ì¾¤ò»ØÄê¤¹¤ë¡£
-//¥Õ¥¡¥¤¥ëÌ¾¤ÈÂè£³°ú¿ô¤ÏÆ±¤¸¤Ë¤¹¤ë¡©
-//»ÈÍÑÊıË¡¤Ï¤³¤ó¤Ê´¶¤¸
+//ã‚ˆã†ã¯ãƒ¦ãƒ¼ã‚¶å®šç¾©ã‚¯ãƒ©ã‚¹ã‚’å–ã‚Šè¾¼ã‚€ã€‚ç¬¬ï¼’å¼•æ•°ã¯ã‚¯ãƒ©ã‚¹åã‚’æŒ‡å®šã™ã‚‹ã€‚
+//ãƒ•ã‚¡ã‚¤ãƒ«åã¨ç¬¬ï¼“å¼•æ•°ã¯åŒã˜ã«ã™ã‚‹ï¼Ÿ
+//ä½¿ç”¨æ–¹æ³•ã¯ã“ã‚“ãªæ„Ÿã˜
 //$c->mylib->cr_to_br( $in_str );
 	$controller->AddComponent(  dirname(__FILE__) . "/../component/mylib.php", 'mylib', 'mylib' );
 	$controller->AddComponent(  dirname(__FILE__) . "/../component/easy_login.php", 'MobileInformation', 'easy_login' );
 	$controller->AddComponent(  dirname(__FILE__) . "/../component/common_lib.php", 'common_lib', 'common_lib' );
 	$controller->AddComponent(  dirname(__FILE__) . "/../component/Pagination.php", 'Pagination', 'pagination' );
 }
-//¥¢¥¯¥·¥ç¥ó¡Ê¥³¥ó¥È¥í¡¼¥é¡Ë¤¬¸Æ¤Ğ¤ì¤ëÄ¾Á°¤Ë¼Â¹Ô¤µ¤ì¤ë´Ø¿ô
-//Á´¥³¥ó¥È¥í¡¼¥é¶¦ÄÌ¤ÇÁ°½èÍı¤ò¤µ¤»¤¿¤¤¾ì¹ç¤³¤³¤ËÀßÄê¤¹¤ë
+//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ï¼ˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ï¼‰ãŒå‘¼ã°ã‚Œã‚‹ç›´å‰ã«å®Ÿè¡Œã•ã‚Œã‚‹é–¢æ•°
+//å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©å…±é€šã§å‰å‡¦ç†ã‚’ã•ã›ãŸã„å ´åˆã“ã“ã«è¨­å®šã™ã‚‹
 function config_controller( &$controller )
 {
-//http://www.asahi-net.or.jp/~wv7y-kmr/memo/php_security.html#PHP_Session¤è¤ê
-//¥»¥Ã¥·¥ç¥óID¤ÎÂÅÅöÀ­¤ò¥Á¥§¥Ã¥¯¤¹¤ë¡£
+//http://www.asahi-net.or.jp/~wv7y-kmr/memo/php_security.html#PHP_Sessionã‚ˆã‚Š
+//ã‚»ãƒƒã‚·ãƒ§ãƒ³IDã®å¦¥å½“æ€§ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚
 	$session_id = session_id();
 	if ( preg_match( '/^[-,0-9a-zA-Z]+$/D', $session_id ) ) {
-		//¥»¥Ã¥·¥ç¥óIDOK
+		//ã‚»ãƒƒã‚·ãƒ§ãƒ³IDOK
 	} elseif ( $session_id == ""){
-		//¤Ê¤Ë¤â¤·¤Ê¤¤
+		//ãªã«ã‚‚ã—ãªã„
 	} else {
-		die("ÉÔÀµ¤Ê¥¢¥¯¥»¥¹¤Ç¤¹");
+		die("ä¸æ­£ãªã‚¢ã‚¯ã‚»ã‚¹ã§ã™");
 	}
-	//¥Ç¥Ğ¥Ã¥¯¥â¡¼¥É
+	//ãƒ‡ãƒãƒƒã‚¯ãƒ¢ãƒ¼ãƒ‰
 	//$controller->SetDebug( true );
-	//Ê¸»ú¥³¡¼¥É¤òÀßÄê¤¹¤ë
-	$controller->setEncoding('EUC-JP');
-	//DB¤Î¥¯¥é¥¤¥¢¥ó¥ÈÊ¸»ú¥³¡¼¥É(MySQLÍÑ)
-	//MySQL°Ê³°¤Î£Ä£Â¤ò»ÈÍÑ¤¹¤ë¾ì¹ç¤Ï½ñ¤­´¹¤¨¤ë¤³¤È¡£
-	$controller->db->query( "set character set gb2312" );	//¤¤¤Ã¤¿¤ó¥¯¥¨¥ê¤òÅê¤²¤ë
-	mysql_set_charset("ujis"); 								//¢¬¤Î¥¯¥¨¥ê¤ò¼Â¹Ô¤·¤¿ÀÜÂ³¤ÇÊ¸»ú¥³¡¼¥ÉÀßÄê¤ò¹Ô¤¦(¤Ş¤È¤â¤ÊÊıË¡¤ÇÀÜÂ³Ê¸»úÎó¤¬¼èÆÀ¤Ç¤­¤Ê¤«¤Ã¤¿¤Î¤Ç)
+	//æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+	$controller->setEncoding('UTF-8');
+	//DBã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆæ–‡å­—ã‚³ãƒ¼ãƒ‰(MySQLç”¨)
+	//MySQLä»¥å¤–ã®ï¼¤ï¼¢ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯æ›¸ãæ›ãˆã‚‹ã“ã¨ã€‚
+	//$controller->db->query( "set character set gb2312" );	//ã„ã£ãŸã‚“ã‚¯ã‚¨ãƒªã‚’æŠ•ã’ã‚‹
+	//mysqli_set_charset("ujis"); 								//â†‘ã®ã‚¯ã‚¨ãƒªã‚’å®Ÿè¡Œã—ãŸæ¥ç¶šã§æ–‡å­—ã‚³ãƒ¼ãƒ‰è¨­å®šã‚’è¡Œã†(ã¾ã¨ã‚‚ãªæ–¹æ³•ã§æ¥ç¶šæ–‡å­—åˆ—ãŒå–å¾—ã§ããªã‹ã£ãŸã®ã§)
 	If ($controller->mylib->chk_mobile() == 0){
 		If ($controller->common_lib->check_login() == TRUE){
-			//¶¦ÄÌ¥Æ¥ó¥×¥ì¡¼¥È¤òÀßÄê¤¹¤ë(PCÍÑ¥µ¥¤¥É¥Ğ¡¼ÉÕ)
+			//å…±é€šãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’è¨­å®šã™ã‚‹(PCç”¨ã‚µã‚¤ãƒ‰ãƒãƒ¼ä»˜)
 			$controller->SetTemplateFile( dirname(__FILE__) . "/../tmplate/common.html");
 		}else{
-			//¶¦ÄÌ¥Æ¥ó¥×¥ì¡¼¥È¤òÀßÄê¤¹¤ë(PCÍÑ¥µ¥¤¥É¥Ğ¡¼¤Ê¤·¡£¸½ºß¤Ï·ÈÂÓ¤È·óÍÑ¤¹¤ë)
+			//å…±é€šãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’è¨­å®šã™ã‚‹(PCç”¨ã‚µã‚¤ãƒ‰ãƒãƒ¼ãªã—ã€‚ç¾åœ¨ã¯æºå¸¯ã¨å…¼ç”¨ã™ã‚‹)
 			$controller->SetTemplateFile( dirname(__FILE__) . "/../tmplate/mb_common.html");
 		}
 	}else{
-		//¶¦ÄÌ¥Æ¥ó¥×¥ì¡¼¥È¤òÀßÄê¤¹¤ë(·ÈÂÓÍÑ)
+		//å…±é€šãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’è¨­å®šã™ã‚‹(æºå¸¯ç”¨)
 		$controller->SetTemplateFile( dirname(__FILE__) . "/../tmplate/mb_common.html");
 	}
 }
-//¤Á¤¤¤¿¤ó¤Î¥³¥ó¥È¥í¡¼¥é¥¯¥é¥¹¤ò³ÈÄ¥¤¹¤ë
+//ã¡ã„ãŸã‚“ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚¯ãƒ©ã‚¹ã‚’æ‹¡å¼µã™ã‚‹
 function config_controller_class()
 {
     require_once( 'extent_controler.php' );
     return 'CMyController';
 }
-//¥í¥°¥¤¥ó¥Á¥§¥Ã¥¯´Ø¿ô
-//¥³¥ó¥È¥í¡¼¥éis_secure´Ø¿ô¤¬true¤Î»şÆ°¤¯
+//ãƒ­ã‚°ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯é–¢æ•°
+//ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©is_secureé–¢æ•°ãŒtrueã®æ™‚å‹•ã
 function check_secure( &$controller )
 {
     if( empty( $_SESSION["RSS"]["USER"] ) )

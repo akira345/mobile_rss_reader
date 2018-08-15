@@ -43,93 +43,93 @@
 
 class Pagination
 {
-	// ¥ê¥ó¥¯¤ÎURL
+	// ãƒªãƒ³ã‚¯ã®URL
 	// @var string
 	var $baseUrl		= '';
 
-	// ¥¯¥¨¥ê¡¼Ê¸»úÎó
+	// ã‚¯ã‚¨ãƒªãƒ¼æ–‡å­—åˆ—
 	// @var string
 	var $queryStr		= 'page';
 
-	// ¸½ºß¤Î¥Ú¡¼¥¸ÈÖ¹æ
+	// ç¾åœ¨ã®ãƒšãƒ¼ã‚¸ç•ªå·
 	// @var integer
 	var $curPage	 	= 1;
 
-	// Ã±°Ì¥ê¥¹¥È¿ô
+	// å˜ä½ãƒªã‚¹ãƒˆæ•°
 	// @var integer
 	var $perPage	 	= 10;
 
-	// ¥ê¥¹¥È¤Î¹ç·×¿ô
+	// ãƒªã‚¹ãƒˆã®åˆè¨ˆæ•°
 	// @var integer
 	var $totalRows  	= 0;
 
-	// Á°¸å¤Î¥ê¥ó¥¯¿ô
+	// å‰å¾Œã®ãƒªãƒ³ã‚¯æ•°
 	// @var integer
 	var $numLinks		= 2;
 
-	// ¥µ¥Ş¥ê¡¼¤ÎÉ½¼¨
+	// ã‚µãƒãƒªãƒ¼ã®è¡¨ç¤º
 	// @var bool
 	var $pageSummary	= TRUE;
 
-	// "ºÇ½é" ¤Î¥Ú¡¼¥¸¤Ø¤Î¥ê¥ó¥¯¥Æ¥­¥¹¥È¡£
+	// "æœ€åˆ" ã®ãƒšãƒ¼ã‚¸ã¸ã®ãƒªãƒ³ã‚¯ãƒ†ã‚­ã‚¹ãƒˆã€‚
 	// @var string
 	var $firstLink		= '&laquo;';
 
-	// "Á°" ¤Î¥Ú¡¼¥¸¤Ø¤Î¥ê¥ó¥¯¥Æ¥­¥¹¥È¡£
+	// "å‰" ã®ãƒšãƒ¼ã‚¸ã¸ã®ãƒªãƒ³ã‚¯ãƒ†ã‚­ã‚¹ãƒˆã€‚
 	// @var string
 	var $prevLink		= '&lsaquo;';
 
-	// "¼¡" ¤Î¥Ú¡¼¥¸¤Ø¤Î¥ê¥ó¥¯¥Æ¥­¥¹¥È¡£
+	// "æ¬¡" ã®ãƒšãƒ¼ã‚¸ã¸ã®ãƒªãƒ³ã‚¯ãƒ†ã‚­ã‚¹ãƒˆã€‚
 	// @var string
 	var $nextLink		= '&rsaquo;';
 
-	// "ºÇ¸å" ¤Î¥Ú¡¼¥¸¤Ø¤Î¥ê¥ó¥¯¥Æ¥­¥¹¥È¡£
+	// "æœ€å¾Œ" ã®ãƒšãƒ¼ã‚¸ã¸ã®ãƒªãƒ³ã‚¯ãƒ†ã‚­ã‚¹ãƒˆã€‚
 	// @var string
 	var $lastLink		= '&raquo;';
 
-	// ¥Ú¡¼¥¸¥Í¡¼¥·¥ç¥ó¤Î³«»Ï¥¿¥°¡£
+	// ãƒšãƒ¼ã‚¸ãƒãƒ¼ã‚·ãƒ§ãƒ³ã®é–‹å§‹ã‚¿ã‚°ã€‚
 	// @var string
 	var $fullTagOpen	= '<div class="pagination"><ul>';
 
-	// ¥Ú¡¼¥¸¥Í¡¼¥·¥ç¥ó¤Î½ªÎ»¥¿¥°¡£
+	// ãƒšãƒ¼ã‚¸ãƒãƒ¼ã‚·ãƒ§ãƒ³ã®çµ‚äº†ã‚¿ã‚°ã€‚
 	// @var string
 	var $fullTagClose	= '</ul></div>';
 
-	// ¥Ú¡¼¥¸¥ê¥ó¥¯¤Î³«»Ï¥¿¥°¡£
+	// ãƒšãƒ¼ã‚¸ãƒªãƒ³ã‚¯ã®é–‹å§‹ã‚¿ã‚°ã€‚
 	// @var string
 	var $linkTagOpen	= '<li>';
 
-	// ¥Ú¡¼¥¸¥ê¥ó¥¯¤Î½ªÎ»¥¿¥°¡£
+	// ãƒšãƒ¼ã‚¸ãƒªãƒ³ã‚¯ã®çµ‚äº†ã‚¿ã‚°ã€‚
 	// @var string
 	var $linkTagClose	= '</li>';
 
-	// "¸½ºß" ¤Î¥Ú¡¼¥¸¤ÎÈÖ¹æ¤Î³«»Ï¥¿¥°¡£
+	// "ç¾åœ¨" ã®ãƒšãƒ¼ã‚¸ã®ç•ªå·ã®é–‹å§‹ã‚¿ã‚°ã€‚
 	// @var string
 	var $curTagOpen		= '<span class="curpage">';
 
-	// "¸½ºß" ¤Î¥Ú¡¼¥¸¤ÎÈÖ¹æ¤Î½ªÎ»¥¿¥°¡£
+	// "ç¾åœ¨" ã®ãƒšãƒ¼ã‚¸ã®ç•ªå·ã®çµ‚äº†ã‚¿ã‚°ã€‚
 	// @var string
 	var $curTagClose	= '</span>';
 
 
-	// ¥³¥ó¥¹¥È¥é¥¯¥¿
-	// @param	array	$params		¥ê¥ó¥¯¤äCSS¥¹¥¿¥¤¥ë¤ÎÀßÄê
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	// @param	array	$params		ãƒªãƒ³ã‚¯ã‚„CSSã‚¹ã‚¿ã‚¤ãƒ«ã®è¨­å®š
 	// @return	void
 	function __construct( $params = array() )
 	{
 		$this->initialize( $params );
 	}
 
-	// ¥³¥ó¥¹¥È¥é¥¯¥¿
-	// @param	array	$params		¥ê¥ó¥¯¤äCSS¥¹¥¿¥¤¥ë¤ÎÀßÄê
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	// @param	array	$params		ãƒªãƒ³ã‚¯ã‚„CSSã‚¹ã‚¿ã‚¤ãƒ«ã®è¨­å®š
 	// @return	void
 	function Pagination( $params = array() )
 	{
 		return $this->__construct( $parms );
 	}
 
-	// ½é´üÀßÄê
-	// @param	array	$params		¥ê¥ó¥¯¤äCSS¥¹¥¿¥¤¥ë¤ÎÀßÄê
+	// åˆæœŸè¨­å®š
+	// @param	array	$params		ãƒªãƒ³ã‚¯ã‚„CSSã‚¹ã‚¿ã‚¤ãƒ«ã®è¨­å®š
 	// @return	void
 	function initialize( $params = array() )
 	{
@@ -142,28 +142,28 @@ class Pagination
 		}
 	}
 
-	// curPage¤Î¼èÆÀ
+	// curPageã®å–å¾—
 	// @return integer
 	function getCurPage()
 	{
 		return $this->curPage;
 	}
 
-	// perPage¤Î¼èÆÀ
+	// perPageã®å–å¾—
 	// @return integer
 	function getPerPage()
 	{
 		return $this->perPage;
 	}
 
-	// totalRows¤Î¼èÆÀ
+	// totalRowsã®å–å¾—
 	// @return integer
 	function getTotalRows()
 	{
 		return $this->totalRows;
 	}
 
-	// LIMIT SQLÊ¸¤Î¼èÆÀ
+	// LIMIT SQLæ–‡ã®å–å¾—
 	// @return string
 	function getLimitSql()
 	{
@@ -171,7 +171,7 @@ class Pagination
 		return $sql;
 	}
 
-	// LIMIT¥ª¥Õ¥»¥Ã¥È¤Î¼èÆÀ
+	// LIMITã‚ªãƒ•ã‚»ãƒƒãƒˆã®å–å¾—
 	// @return integer
 	function getLimit()
 	{
@@ -179,8 +179,8 @@ class Pagination
 		return $offset;
 	}
 
-	// °ú¿ô¤ÎÇÛÎó¤«¤é¸½ºß¥Ú¡¼¥¸¤ÎÍ×ÁÇ¤òÇÛÎó¤Ç¼èÆÀ
-	// @param  array	É½¼¨ÂĞ¾İ¤ÎÁ´¥Ç¡¼¥¿
+	// å¼•æ•°ã®é…åˆ—ã‹ã‚‰ç¾åœ¨ãƒšãƒ¼ã‚¸ã®è¦ç´ ã‚’é…åˆ—ã§å–å¾—
+	// @param  array	è¡¨ç¤ºå¯¾è±¡ã®å…¨ãƒ‡ãƒ¼ã‚¿
 	// @return array
 	function slice( &$data )
 	{
@@ -188,7 +188,7 @@ class Pagination
 		return array_slice( $data , $this->getLimit() , $this->perPage );
 	}
 
-	// ¥Ú¡¼¥¸¥Í¡¼¥·¥ç¥óHTMLÊ¸¤Î¼èÆÀ
+	// ãƒšãƒ¼ã‚¸ãƒãƒ¼ã‚·ãƒ§ãƒ³HTMLæ–‡ã®å–å¾—
 	// @return 	string
 	function create_links()
 	{

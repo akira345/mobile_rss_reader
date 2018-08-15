@@ -1,21 +1,21 @@
 <?php
-//¥¯¡¼¥í¥óÍÑ
-	require_once( "<¥µ¡¼¥Ğ¤ÎÀäÂĞ¥Ñ¥¹>/rss/component/rss_fetch.inc");
+//ã‚¯ãƒ¼ãƒ­ãƒ³ç”¨
+	require_once( "<ã‚µãƒ¼ãƒã®çµ¶å¯¾ãƒ‘ã‚¹>/rss/component/rss_fetch.inc");
 	define('MAGPIE_OUTPUT_ENCODING', 'utf-8');
-	define('MAGPIE_CACHE_DIR','<¥µ¡¼¥Ğ¤ÎÀäÂĞ¥Ñ¥¹>/rss/component/cache');
-	//¤Á¤¤¤¿¤ó¤Ï¤¢¤È¤ËÆÉ¤ß¹ş¤Ş¤¹¤³¤È
-	require_once( "<¥µ¡¼¥Ğ¤ÎÀäÂĞ¥Ñ¥¹>/rss/config/config.php" );
-	require_once( "<¥µ¡¼¥Ğ¤ÎÀäÂĞ¥Ñ¥¹>/cheetan/cheetan.php" );
+	define('MAGPIE_CACHE_DIR','<ã‚µãƒ¼ãƒã®çµ¶å¯¾ãƒ‘ã‚¹>/rss/component/cache');
+	//ã¡ã„ãŸã‚“ã¯ã‚ã¨ã«èª­ã¿è¾¼ã¾ã™ã“ã¨
+	require_once( "<ã‚µãƒ¼ãƒã®çµ¶å¯¾ãƒ‘ã‚¹>/rss/config/config.php" );
+	require_once( "<ã‚µãƒ¼ãƒã®çµ¶å¯¾ãƒ‘ã‚¹>/cheetan/cheetan.php" );
 function is_session()
 {
-//¥»¥Ã¥·¥ç¥ó¤ÏÌµ¸ú¤Ë¤¹¤ë
+//ã‚»ãƒƒã‚·ãƒ§ãƒ³ã¯ç„¡åŠ¹ã«ã™ã‚‹
     return false;
 }
 function action( &$c )
 {
-	//¥³¥ó¥È¥í¡¼¥é
-	//¥æ¡¼¥¶£É£Ä¥»¥Ã¥È
-	//¥á¡¼¥ë¥¢¥É¥ì¥¹¤¬ÅĞÏ¿ºÑ¤ß¤Î¥æ¡¼¥¶
+	//ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+	//ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤ã‚»ãƒƒãƒˆ
+	//ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒç™»éŒ²æ¸ˆã¿ã®ãƒ¦ãƒ¼ã‚¶
 	If($c->login_user->getcount("'e-mail' <> ''") >0){
 		$user_data = $c->login_user->find("'e-mail' != ''");
 		foreach($user_data as $u_data){
@@ -26,83 +26,83 @@ function action( &$c )
 							'haisin_flg' => '1',
 						);
 			If ($c->rss_data->getcount($tmp) > 0){
-				//¥Ç¡¼¥¿¤¢¤ê
+				//ãƒ‡ãƒ¼ã‚¿ã‚ã‚Š
 				$datas=$c->rss_data->find($tmp);
-				$wk_body2 = '';//RSSÃ±°Ì¤ÎÊ¸ÌÌ
+				$wk_body2 = '';//RSSå˜ä½ã®æ–‡é¢
 				foreach($datas as $data){
-					//¥­¡¼¥ï¡¼¥É¤ò¼èÆÀ
-					//Ç°¤Î¤¿¤á²ş¹Ô¥³¡¼¥É¤ò¤½¤í¤¨¤Æ¤ª¤¯
+					//ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã‚’å–å¾—
+					//å¿µã®ãŸã‚æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’ãã‚ãˆã¦ãŠã
 					$keyword = explode("\n",str_replace(array("\r\n","\n","\r"), "\n", $data["keyword"]));
-					//É½¼¨¤Ç¤Ä¤«¤¦¤Î¤ÇÂàÈò
+					//è¡¨ç¤ºã§ã¤ã‹ã†ã®ã§é€€é¿
 					$wk_keyword = $keyword;
-					//¥­¡¼¥ï¡¼¥ÉÊ¸»ú¤ÎÀµµ¬²½¤ò¹Ô¤¦
+					//ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰æ–‡å­—ã®æ­£è¦åŒ–ã‚’è¡Œã†
 					$keyword = $c->mylib->mb_convert_kana_variables($keyword,'rnaskh',$c->encoding);
-					//¥­¡¼¥ï¡¼¥É¤Î½ÅÊ£¤ò½ü³°
+					//ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã®é‡è¤‡ã‚’é™¤å¤–
 					$uniq_keyword = array_unique($keyword);
-					//RSS¤ÎURL
+					//RSSã®URL
 					$url = $data["rss_url"];
-					//¥³¥á¥ó¥È
+					//ã‚³ãƒ¡ãƒ³ãƒˆ
 					$comment = $data["comment"];
-					//RSS¤ÎNO
+					//RSSã®NO
 					$rss_no = $data["no"];
-					//RSS¤Î¥Ñ¡¼¥º
+					//RSSã®ãƒ‘ãƒ¼ã‚º
 					$url = html_entity_decode($url, ENT_QUOTES);
 					$rss = fetch_rss($url);
-					$wk_body = '';//µ­»ö¤Î¥¿¥¤¥È¥ë¡¢ËÜÊ¸
-					//·ÈÂÓÊÑ´¹¤Ø¤ÎURL
-					//Google¤ò»È¤Ã¤Æ¤ß¤ë
+					$wk_body = '';//è¨˜äº‹ã®ã‚¿ã‚¤ãƒˆãƒ«ã€æœ¬æ–‡
+					//æºå¸¯å¤‰æ›ã¸ã®URL
+					//Googleã‚’ä½¿ã£ã¦ã¿ã‚‹
 					$keitai_cnv = 'http://www.google.co.jp/gwt/n?u=';
-					//·ÈÂÓÊÑ´¹¤¬É¬Í×¤«¤É¤¦¤«
+					//æºå¸¯å¤‰æ›ãŒå¿…è¦ã‹ã©ã†ã‹
 					if($data["cnv_keitai"] == 0){
 						$keitai_cnv = null;
 					}
 					foreach ($rss->items as $item){
-						//¤³¤³¤ÎÊ¸»ú¥³¡¼¥É¤â¼èÆÀ¤Ç¤­¤¿¤éÃÖ´¹¤¹¤ë
-						//µ­»öÃ±°Ì
+						//ã“ã“ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚‚å–å¾—ã§ããŸã‚‰ç½®æ›ã™ã‚‹
+						//è¨˜äº‹å˜ä½
 						$title = strip_tags(mb_convert_encoding($item['title'],$c->encoding,'UTF8'));
 						$summary = strip_tags(mb_convert_encoding($item['summary'],$c->encoding,'UTF8'));
 						$wk_url = $keitai_cnv . htmlspecialchars(mb_convert_encoding($item['link'],$c->encoding,'UTF8'));
-						//ÆüÉÕ¤ÎÊÑ´¹
+						//æ—¥ä»˜ã®å¤‰æ›
 						If ($item['dc']['date']){
 							//RSS1.0
 							$wk_time = preg_replace('/T|[\+Z].+/', ' ',$item['dc']['date']); //2009-04-25 06:25:03
 						}else{
 							$wk_time = date('Y-m-d H:i:s',strtotime($item['pubdate'])); //2009-04-24 22:25:34
 						}
-						$match_keywords = '';//¥Ş¥Ã¥Á¥ó¥°¥­¡¼¥ï¡¼¥É¥¯¥ê¥¢
-						//¹­¹ğNG½èÍı
-						$ad_words = array("[PR]","¡ÚPR¡Û","AD:","¡ÎPR¡Ï","AD¡§","¹­¹ğ¡§","PR:","PR¡§","Info:");
+						$match_keywords = '';//ãƒãƒƒãƒãƒ³ã‚°ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã‚¯ãƒªã‚¢
+						//åºƒå‘ŠNGå‡¦ç†
+						$ad_words = array("[PR]","ã€PRã€‘","AD:","ï¼»PRï¼½","ADï¼š","åºƒå‘Šï¼š","PR:","PRï¼š","Info:");
 						//$ad_words = $c->settings->get_settings('ad_words');
 						If ($c->common_lib->array_strpos($title,$ad_words) == TRUE){
-							continue;	//°Ê²¼¤Î½èÍı¥¹¥­¥Ã¥×
+							continue;	//ä»¥ä¸‹ã®å‡¦ç†ã‚¹ã‚­ãƒƒãƒ—
 						}
-						//¥¿¥¤¥È¥ë¤ò¼èÆÀ¤·¡¢¤¹¤Ç¤Ë¥á¡¼¥ëÁ÷¿®¤·¤Æ¤¤¤Ê¤¤¤«³ÎÇ§
+						//ã‚¿ã‚¤ãƒˆãƒ«ã‚’å–å¾—ã—ã€ã™ã§ã«ãƒ¡ãƒ¼ãƒ«é€ä¿¡ã—ã¦ã„ãªã„ã‹ç¢ºèª
 						$tmp = "user_id='" . $c->wk_send_rss->escape($user_id) . "' ";
 						$tmp.= "and rss_id='" . $c->wk_send_rss->escape($rss_no). "' ";
 						$tmp.= "and title='" . $c->wk_send_rss->escape($title). "' ";
-						//ºÆÇÛ¿®¤ò¤·¤Ê¤¤
+						//å†é…ä¿¡ã‚’ã—ãªã„
 						If ($item['no_repert_flg'] != True){
-							$tmp.= "and touroku_date >='" . date("Ymd",strtotime("-1 week")) ."'";//Æ±¤¸RSS,Æ±¤¸¥¿¥¤¥È¥ë¤ÇÇÛ¿®¤¹¤ëÍ±Í½´ü´Ö¤Ï£±½µ´Ö
+							$tmp.= "and touroku_date >='" . date("Ymd",strtotime("-1 week")) ."'";//åŒã˜RSS,åŒã˜ã‚¿ã‚¤ãƒˆãƒ«ã§é…ä¿¡ã™ã‚‹çŒ¶äºˆæœŸé–“ã¯ï¼‘é€±é–“
 						}
 						If($c->wk_send_rss->getcount($tmp) == 0){
-						//µ­»ö¤ÎÃæ¤Ë¥­¡¼¥ï¡¼¥É¤Ë¥Ş¥Ã¥Á¤·¤¿¤â¤Î¤¬¤¢¤ë¤«¡©
+						//è¨˜äº‹ã®ä¸­ã«ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã«ãƒãƒƒãƒã—ãŸã‚‚ã®ãŒã‚ã‚‹ã‹ï¼Ÿ
 							foreach ($uniq_keyword as $key){
-						//¥¿¥¤¥È¥ë¤â¥Ş¥Ã¥Á¥ó¥°¤ÎÂĞ¾İ¤ËÊÑ¹¹20100318
+						//ã‚¿ã‚¤ãƒˆãƒ«ã‚‚ãƒãƒƒãƒãƒ³ã‚°ã®å¯¾è±¡ã«å¤‰æ›´20100318
 						//		If (stripos(mb_convert_kana($summary,'rnaskh',$c->encoding),$key) ===FALSE){
 								If (stripos(mb_convert_kana($title . $summary,'rnaskh',$c->encoding),$key) ===FALSE){
-									//ÉÔ°ìÃ×¤Ï¤Ê¤Ë¤â¤·¤Ê¤¤
+									//ä¸ä¸€è‡´ã¯ãªã«ã‚‚ã—ãªã„
 								}else{
-										//°ìÃ×¤·¤¿¥­¡¼¥ï¡¼¥É¤ò¥»¥Ã¥È
-										//¤Ş¤º¤ÏÀµµ¬²½¤·¤¿¥­¡¼¥ï¡¼¥É¤ÎÇÛÎó¥­¡¼¼èÆÀ
+										//ä¸€è‡´ã—ãŸã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
+										//ã¾ãšã¯æ­£è¦åŒ–ã—ãŸã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã®é…åˆ—ã‚­ãƒ¼å–å¾—
 										$match_key = array_search($key,$keyword);
-										//¼¡¤Ë³ºÅö¤¹¤ëÇÛÎó¥­¡¼¤«¤éÅĞÏ¿¤µ¤ì¤¿¥­¡¼¥ï¡¼¥É¤ò¼èÆÀ¤¹¤ë
+										//æ¬¡ã«è©²å½“ã™ã‚‹é…åˆ—ã‚­ãƒ¼ã‹ã‚‰ç™»éŒ²ã•ã‚ŒãŸã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
 										$match_keywords .= '[' . $wk_keyword[$match_key] . ']';
 								}
 							}
 						}
 						If (($match_keywords)!=''){
-							//¥Ş¥Ã¥Á¤·¤¿¥­¡¼¥ï¡¼¥É¤¬¤¢¤Ã¤¿
-							//ºÆÁ÷¤Î¾ì¹ç¤Ï¥¿¥¤¥È¥ë¤Ë(ºÆ)¤ò¤Ä¤±¤ë
+							//ãƒãƒƒãƒã—ãŸã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ãŒã‚ã£ãŸ
+							//å†é€ã®å ´åˆã¯ã‚¿ã‚¤ãƒˆãƒ«ã«(å†)ã‚’ã¤ã‘ã‚‹
 							$tmp=array(
 										'user_id' => $user_id,
 										'rss_id' => $rss_no,
@@ -113,7 +113,7 @@ function action( &$c )
 							}else{
 								$resend_flg = 0;
 							}
-							//¥á¡¼¥ëÁ÷¿®¥Æ¡¼¥Ö¥ë¤Ëµ­Ï¿
+							//ãƒ¡ãƒ¼ãƒ«é€ä¿¡ãƒ†ãƒ¼ãƒ–ãƒ«ã«è¨˜éŒ²
 							$tmp=array(
 										'user_id' => $user_id,
 										'rss_id' => $rss_no,
@@ -122,33 +122,33 @@ function action( &$c )
 										);
 							$c->wk_send_rss->insert($tmp);
 							If ($resend_flg !=0){
-								$title = "(ºÆ)" . $title;
+								$title = "(å†)" . $title;
 							}
-							//¥á¡¼¥ëÍÑÊ¸ÌÌ¹½ÃÛ
-							$wk_body .= "¥¿¥¤¥È¥ë¡§" .$title . "\n";	//¥¿¥¤¥È¥ë
-							$wk_body .= "(" . $wk_time . ")" . "\n";	//µ­»ö¤ÎÆüÉÕ
-							$wk_body .= "¥Ş¥Ã¥Á¤·¤¿¥­¡¼¥ï¡¼¥É¡§" . $match_keywords . "\n";
-							$wk_body .= $summary . "\n";	//ËÜÊ¸
+							//ãƒ¡ãƒ¼ãƒ«ç”¨æ–‡é¢æ§‹ç¯‰
+							$wk_body .= "ã‚¿ã‚¤ãƒˆãƒ«ï¼š" .$title . "\n";	//ã‚¿ã‚¤ãƒˆãƒ«
+							$wk_body .= "(" . $wk_time . ")" . "\n";	//è¨˜äº‹ã®æ—¥ä»˜
+							$wk_body .= "ãƒãƒƒãƒã—ãŸã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ï¼š" . $match_keywords . "\n";
+							$wk_body .= $summary . "\n";	//æœ¬æ–‡
 							$wk_body .= "link:" . $wk_url . "\n";
 							$wk_body .= "--------------------------------------------------------------------" . "\n\n";
 						}
 					}
 					If (($wk_body)!=''){
-						//RSSÃ±°Ì
-						$wk_body2 .= "RSS:¡Ö" . $comment . "¡×" . "\n\n";
+						//RSSå˜ä½
+						$wk_body2 .= "RSS:ã€Œ" . $comment . "ã€" . "\n\n";
 						$wk_body2 .= $wk_body;
 					}
 				}
 				If (($wk_body2)!=''){
-					echo "¥á¡¼¥ëÁ÷¿®¡ª¡ª";
-					$wk_body2 .= "\n\n·ÈÂÓRSS¥ê¡¼¥À¡§http://exsample.com/rss/" . "\n";
+					echo "ãƒ¡ãƒ¼ãƒ«é€ä¿¡ï¼ï¼";
+					$wk_body2 .= "\n\næºå¸¯RSSãƒªãƒ¼ãƒ€ï¼šhttp://exsample.com/rss/" . "\n";
 				//	echo $wk_body2;
 					////
 					mb_language("Ja") ;
-					mb_internal_encoding("EUC-JP") ;
+					mb_internal_encoding("UTF-8") ;
 					$mailto=$e_mail;
-					$subject="RSS¥Ş¥Ã¥Á¥ó¥°¥ì¥İ¡¼¥È(".$c->common_lib->get_date().")";
-					$content="¥­¡¼¥ï¡¼¥É¤Ë¥Ş¥Ã¥Á¥ó¥°¤·¤¿µ­»ö¤òÁ÷¿®¤¤¤¿¤·¤Ş¤¹¡£"."\n\n".$wk_body2;
+					$subject="RSSãƒãƒƒãƒãƒ³ã‚°ãƒ¬ãƒãƒ¼ãƒˆ(".$c->common_lib->get_date().")";
+					$content="ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã«ãƒãƒƒãƒãƒ³ã‚°ã—ãŸè¨˜äº‹ã‚’é€ä¿¡ã„ãŸã—ã¾ã™ã€‚"."\n\n".$wk_body2;
 					$mailfrom="From:info@exsample.com";
 					mb_send_mail($mailto,$subject,$content,$mailfrom);
 				}

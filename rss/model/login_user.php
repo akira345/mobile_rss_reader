@@ -1,18 +1,18 @@
 <?php
 class Clogin_user extends CModel{
-//¥¢¥«¥¦¥ó¥È´ÉÍı¥â¥Ç¥ë
-	private  $err_msg = '';	//¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸
+//ã‚¢ã‚«ã‚¦ãƒ³ãƒˆç®¡ç†ãƒ¢ãƒ‡ãƒ«
+	private  $err_msg = '';	//ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
-	//¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸
-	//°ú¿ô¡§¤Ê¤·
-	//Ìá¤êÃÍ:¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸
+	//ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	//å¼•æ•°ï¼šãªã—
+	//æˆ»ã‚Šå€¤:ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	function show_msg(){
 		return $this->err_msg;
 	}
 
-	//¥ê¥¿¡¼¥ó¥³¡¼¥ÉÀßÄê
-	//°ú¿ô¡§¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸
-	//Ìá¤êÃÍ¡§¥á¥Ã¥»¡¼¥¸¤¢¤ê¡§FALSE¤Ê¤·TRUE
+	//ãƒªã‚¿ãƒ¼ãƒ³ã‚³ãƒ¼ãƒ‰è¨­å®š
+	//å¼•æ•°ï¼šã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	//æˆ»ã‚Šå€¤ï¼šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ã‚Šï¼šFALSEãªã—TRUE
 	private function ret($in_data){
 		If ($in_data){
 			return FALSE;
@@ -20,21 +20,21 @@ class Clogin_user extends CModel{
 			return TRUE;
 		}
 	}
-	//°ú¿ô¥Á¥§¥Ã¥¯ÍÑ
-	//°ú¿ô¡§ÂĞ¾İÇÛÎó¡¢Ãµ¤¹¥­¡¼
-	//Ìá¤êÃÍ¡§ÂĞ¾İÇÛÎó¤Ë¥­¡¼¤¬¤¢¤ë¾ì¹çTRUE¤Ê¤¤FALSE
+	//å¼•æ•°ãƒã‚§ãƒƒã‚¯ç”¨
+	//å¼•æ•°ï¼šå¯¾è±¡é…åˆ—ã€æ¢ã™ã‚­ãƒ¼
+	//æˆ»ã‚Šå€¤ï¼šå¯¾è±¡é…åˆ—ã«ã‚­ãƒ¼ãŒã‚ã‚‹å ´åˆTRUEãªã„FALSE
 	private function chk_input($in_data=array(),$key){
 		$this->err_msg = "";
 		If (array_key_exists($key, $in_data)){
 			return TRUE ;
 		}else{
-			$this->err_msg = "¥Ñ¥é¥á¥¿¥¨¥é¡¼";
+			$this->err_msg = "ãƒ‘ãƒ©ãƒ¡ã‚¿ã‚¨ãƒ©ãƒ¼";
 			return FALSE;
 		}
 	}
 
-	//DBÅĞÏ¿Æü»şµ­Ï¿ÍÑ
-	//ÆÃ¤ËÀâÌÀ¤ÏÉÔÍ×¤Ç¤·¤ç¤¦¡¦¡¦
+	//DBç™»éŒ²æ—¥æ™‚è¨˜éŒ²ç”¨
+	//ç‰¹ã«èª¬æ˜ã¯ä¸è¦ã§ã—ã‚‡ã†ãƒ»ãƒ»
 	private function get_date(){
 		return date('Ymd');
 	}
@@ -42,9 +42,9 @@ class Clogin_user extends CModel{
 		return date('His');
 	}
 
-	//¥¢¥«¥¦¥ó¥È¥í¥°µ­Ï¿
-	//°ú¿ô¡§µ­Ï¿¤¹¤ë¥æ¡¼¥¶IDÈÖ¹æ,¥á¥â
-	//Ìá¤êÃÍ¡§True Or False
+	//ã‚¢ã‚«ã‚¦ãƒ³ãƒˆãƒ­ã‚°è¨˜éŒ²
+	//å¼•æ•°ï¼šè¨˜éŒ²ã™ã‚‹ãƒ¦ãƒ¼ã‚¶IDç•ªå·,ãƒ¡ãƒ¢
+	//æˆ»ã‚Šå€¤ï¼šTrue Or False
 	function record($id,$memo){
 		$tmp =array();
 		If($id == '' || $memo == ''){
@@ -56,12 +56,12 @@ class Clogin_user extends CModel{
 				'touroku_date' => date('Ymd'),
 				'touroku_time' => date('His'),
 				'ip' => $_SERVER["REMOTE_ADDR"],
-				'kyaria_cd' => mylib::chk_mobile(),//¥­¥ã¥ê¥¢È½Äê
+				'kyaria_cd' => mylib::chk_mobile(),//ã‚­ãƒ£ãƒªã‚¢åˆ¤å®š
 				'agent' => $_SERVER["HTTP_USER_AGENT"],
 				);
-				$this->table = "login_his";//¥í¥°¥Æ¡¼¥Ö¥ë»ØÄê
+				$this->table = "login_his";//ãƒ­ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«æŒ‡å®š
 		If($this->insert($tmp)){
-			$this->table = "login_user";	//¥Æ¡¼¥Ö¥ëÌ¾¤òÌá¤¹
+			$this->table = "login_user";	//ãƒ†ãƒ¼ãƒ–ãƒ«åã‚’æˆ»ã™
 			return TRUE;
 		}else{
 			return FALSE;
@@ -69,39 +69,39 @@ class Clogin_user extends CModel{
 
 	}
 
-	//¥¢¥«¥¦¥ó¥È½ÅÊ£¥Á¥§¥Ã¥¯
-	//°ú¿ô¡§¥¢¥«¥¦¥ó¥È¾ğÊóÇÛÎó
-	//Ìá¤êÃÍ¡§True Or False
+	//ã‚¢ã‚«ã‚¦ãƒ³ãƒˆé‡è¤‡ãƒã‚§ãƒƒã‚¯
+	//å¼•æ•°ï¼šã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±é…åˆ—
+	//æˆ»ã‚Šå€¤ï¼šTrue Or False
 	function double_chk($data=array()){
 		$this->err_msg = "";
 		If(!$this->chk_input($data,"user_name")){
 			return false;
 		}
-		//¤¹¤Ç¤ËÆ±Ì¾¤Î¥æ¡¼¥¶¤¬Â¸ºß¤·¤Ê¤¤¤«¥Á¥§¥Ã¥¯¤¹¤ë
+		//ã™ã§ã«åŒåã®ãƒ¦ãƒ¼ã‚¶ãŒå­˜åœ¨ã—ãªã„ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 		if ($this->getcount("user_name='" . $this->escape($data["user_name"]) . "'") > 0){
-			$this->err_msg = "¤¹¤Ç¤ËÆ±Ì¾¤ÎID¤¬ÅĞÏ¿¤µ¤ì¤Æ¤¤¤Ş¤¹<BR>";
+			$this->err_msg = "ã™ã§ã«åŒåã®IDãŒç™»éŒ²ã•ã‚Œã¦ã„ã¾ã™<BR>";
 		}
 		return $this->ret($this->err_msg);
 	}
-	//¥¢¥«¥¦¥ó¥È½ÅÊ£¥Á¥§¥Ã¥¯(·ÈÂÓ)
-	//°ú¿ô¡§¥¢¥«¥¦¥ó¥È¾ğÊóÇÛÎó
-	//Ìá¤êÃÍ¡§True Or False
+	//ã‚¢ã‚«ã‚¦ãƒ³ãƒˆé‡è¤‡ãƒã‚§ãƒƒã‚¯(æºå¸¯)
+	//å¼•æ•°ï¼šã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±é…åˆ—
+	//æˆ»ã‚Šå€¤ï¼šTrue Or False
 	function mb_double_chk($data=array()){
 		$this->err_msg = "";
 		If(!$this->chk_input($data,"mb_key")){
 			return false;
 		}
-		//¤¹¤Ç¤ËÆ±¤¸·ÈÂÓµ¡¼ïÈÖ¹æ¤¬Â¸ºß¤·¤Ê¤¤¤«¥Á¥§¥Ã¥¯¤¹¤ë
+		//ã™ã§ã«åŒã˜æºå¸¯æ©Ÿç¨®ç•ªå·ãŒå­˜åœ¨ã—ãªã„ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 		if ($this->getcount("mb_key='" . $this->escape($data["mb_key"]) . "'") >0){
-			//¥Ç¡¼¥¿È¯¸«
-			$this->err_msg = "¤¹¤Ç¤ËÅĞÏ¿¤¬¤¢¤ê¤Ş¤·¤¿¡£<BR>";
+			//ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹
+			$this->err_msg = "ã™ã§ã«ç™»éŒ²ãŒã‚ã‚Šã¾ã—ãŸã€‚<BR>";
 		}
 		return $this->ret($this->err_msg);
 	}
-	//¥¢¥«¥¦¥ó¥ÈÅĞÏ¿
-	//°ú¿ô¡§¥¢¥«¥¦¥ó¥È¾ğÊóÇÛÎó
-	//Ìá¤êÃÍ¡§True Or False
-	//Ãí°Õ¡§¥Ñ¥é¥á¥¿¤Î¥Á¥§¥Ã¥¯¤Ï»öÁ°¤Ë¹Ô¤Ã¤Æ¤ª¤¯¤³¤È
+	//ã‚¢ã‚«ã‚¦ãƒ³ãƒˆç™»éŒ²
+	//å¼•æ•°ï¼šã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±é…åˆ—
+	//æˆ»ã‚Šå€¤ï¼šTrue Or False
+	//æ³¨æ„ï¼šãƒ‘ãƒ©ãƒ¡ã‚¿ã®ãƒã‚§ãƒƒã‚¯ã¯äº‹å‰ã«è¡Œã£ã¦ãŠãã“ã¨
 	function touroku($data=array()){
 		$this->err_msg = "";
 		$tmp = array();
@@ -111,39 +111,39 @@ class Clogin_user extends CModel{
 		If(!$this->chk_input($data,"password")){
 			return false;
 		}
-		//½ÅÊ£¥Á¥§¥Ã¥¯
+		//é‡è¤‡ãƒã‚§ãƒƒã‚¯
 		If(!($this->double_chk($data))){
 			return FALSE;
 		}
-		//ID¤ò¥»¥Ã¥È
+		//IDã‚’ã‚»ãƒƒãƒˆ
 		$tmp["user_name"] = $data["user_name"];
-		//¥Ñ¥¹¥ï¡¼¥É¤òMD5¤ÇÊÑ´¹¤¹¤ë
+		//ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’MD5ã§å¤‰æ›ã™ã‚‹
 		$tmp["password"] = md5($data["password"]);
 
-		//ÅĞÏ¿Æü¥»¥Ã¥È
+		//ç™»éŒ²æ—¥ã‚»ãƒƒãƒˆ
 		$tmp["touroku_date"] = $this->get_date();
 		$tmp["touroku_time"] = $this->get_time();
 
-		//ÅĞÏ¿
+		//ç™»éŒ²
 		If (!$this->insert($tmp)){
-			$this->err_msg = "¥æ¡¼¥¶¤ÎÅĞÏ¿¤Ë¼ºÇÔ¤·¤Ş¤·¤¿<BR>";
+			$this->err_msg = "ãƒ¦ãƒ¼ã‚¶ã®ç™»éŒ²ã«å¤±æ•—ã—ã¾ã—ãŸ<BR>";
 			return FALSE;
 		}
-		//ÅĞÏ¿¤µ¤ì¤¿IDÈÖ¹æ¼èÆÀ
+		//ç™»éŒ²ã•ã‚ŒãŸIDç•ªå·å–å¾—
 		If(!$tmp = $this->findone($tmp)){
-			$this->err_msg = "¥·¥¹¥Æ¥à¥¨¥é¡¼";
+			$this->err_msg = "ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼";
 			return FALSE;
 		}
-		//¥í¥°¤Ëµ­Ï¿
-		If (!$this->record($tmp["id"],"¥æ¡¼¥¶ÅĞÏ¿")){
-			$this->err_msg = "¥·¥¹¥Æ¥à¥¨¥é¡¼<BR>";
+		//ãƒ­ã‚°ã«è¨˜éŒ²
+		If (!$this->record($tmp["id"],"ãƒ¦ãƒ¼ã‚¶ç™»éŒ²")){
+			$this->err_msg = "ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼<BR>";
 			return FALSE;
 		}
 		return $this->ret($this->err_msg);
 	}
-	//¥¢¥«¥¦¥ó¥ÈÅĞÏ¿(·ÈÂÓ)
-	//°ú¿ô¡§¥¢¥«¥¦¥ó¥È¾ğÊóÇÛÎó
-	//Ìá¤êÃÍ¡§True Or False
+	//ã‚¢ã‚«ã‚¦ãƒ³ãƒˆç™»éŒ²(æºå¸¯)
+	//å¼•æ•°ï¼šã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±é…åˆ—
+	//æˆ»ã‚Šå€¤ï¼šTrue Or False
 	function mb_touroku($data=array()){
 		$this->err_msg = "";
 		$tmp = array();
@@ -153,238 +153,238 @@ class Clogin_user extends CModel{
 		If(!$this->chk_input($data,"mb_key")){
 			return false;
 		}
-		//½ÅÊ£¥Á¥§¥Ã¥¯
+		//é‡è¤‡ãƒã‚§ãƒƒã‚¯
 		If(!($this->mb_double_chk($data))){
 			return FALSE;
 		}
-		//¥­¡¼¥»¥Ã¥È
+		//ã‚­ãƒ¼ã‚»ãƒƒãƒˆ
 		$tmp['mb_key'] = $data["mb_key"];
 		$tmp["id"] = $data["id"];
-		//ÅĞÏ¿Æü¥»¥Ã¥È
+		//ç™»éŒ²æ—¥ã‚»ãƒƒãƒˆ
 		$tmp["touroku_date"] = $this->get_date();
 		$tmp["touroku_time"] = $this->get_time();
-		//ÅĞÏ¿
-		//¥í¥°¤Ëµ­Ï¿
-		If (!$this->record($tmp["id"],"·ÈÂÓ¥æ¡¼¥¶ÅĞÏ¿")){
-			$this->err_msg = "¥·¥¹¥Æ¥à¥¨¥é¡¼<BR>";
+		//ç™»éŒ²
+		//ãƒ­ã‚°ã«è¨˜éŒ²
+		If (!$this->record($tmp["id"],"æºå¸¯ãƒ¦ãƒ¼ã‚¶ç™»éŒ²")){
+			$this->err_msg = "ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼<BR>";
 			return FALSE;
 		}
 		If(!$this->updateby($tmp,'id=' . $this->escape($tmp["id"]))){
-			$this->err_msg = "·ÈÂÓ¤ÎÅĞÏ¿¤Ë¼ºÇÔ¤·¤Ş¤·¤¿<BR>";
+			$this->err_msg = "æºå¸¯ã®ç™»éŒ²ã«å¤±æ•—ã—ã¾ã—ãŸ<BR>";
 		}
 		return $this->ret($this->err_msg);
 	}
 
-	//¥¢¥«¥¦¥ó¥ÈÅĞÏ¿(·ÈÂÓ)
-	//°ú¿ô¡§¥¢¥«¥¦¥ó¥È¾ğÊóÇÛÎó
-	//Ìá¤êÃÍ¡§True Or False
-	//Ãí°Õ¡§¥»¥Ã¥·¥ç¥ó¾ğÊó¤âºï½ü¤µ¤ì¤ë
+	//ã‚¢ã‚«ã‚¦ãƒ³ãƒˆç™»éŒ²(æºå¸¯)
+	//å¼•æ•°ï¼šã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±é…åˆ—
+	//æˆ»ã‚Šå€¤ï¼šTrue Or False
+	//æ³¨æ„ï¼šã‚»ãƒƒã‚·ãƒ§ãƒ³æƒ…å ±ã‚‚å‰Šé™¤ã•ã‚Œã‚‹
 	function kill_acount($data=array()){
 		$this->err_msg = "";
 		$tmp =array();
 		If(!$this->chk_input($data,"id")){
 			return false;
 		}
-		//ºï½üÁ°Â¸ºß³ÎÇ§
+		//å‰Šé™¤å‰å­˜åœ¨ç¢ºèª
 		if ($this->getcount("id='" . $this->escape($data["id"]) . "'") == 0){
-			$this->err_msg = "¥·¥¹¥Æ¥à¥¨¥é¡¼<BR>";
+			$this->err_msg = "ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼<BR>";
 			return False;
 		}
-		//¥í¥°¤Ëµ­Ï¿
-		If(!$this->record($data["id"],"¥æ¡¼¥¶ºï½ü")){
-			$this->err_msg="¥·¥¹¥Æ¥à¥¨¥é¡¼<BR>";
+		//ãƒ­ã‚°ã«è¨˜éŒ²
+		If(!$this->record($data["id"],"ãƒ¦ãƒ¼ã‚¶å‰Šé™¤")){
+			$this->err_msg="ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼<BR>";
 			return FALSE;
 		}
-		//ºï½ü
+		//å‰Šé™¤
 		If(!$this->del("id='" . $this->escape($data["id"]) . "'")){
-			$this->err_msg = "¥æ¡¼¥¶¤Îºï½ü¤Ë¼ºÇÔ¤·¤Ş¤·¤¿<BR>";
+			$this->err_msg = "ãƒ¦ãƒ¼ã‚¶ã®å‰Šé™¤ã«å¤±æ•—ã—ã¾ã—ãŸ<BR>";
 			return FALSE;
 		}
-		//¥»¥Ã¥·¥ç¥ó¾ğÊóºï½ü
+		//ã‚»ãƒƒã‚·ãƒ§ãƒ³æƒ…å ±å‰Šé™¤
 		If(!$this->log_out($data)){
 			return False;
 		}
 		return TRUE;
 	}
-	//¥í¥°¥¢¥¦¥È½èÍı
-	//°ú¿ô¡§¥¢¥«¥¦¥ó¥È¾ğÊó
-	//Ìá¤êÃÍ¡§True Or False
-	//Ãí°Õ¡§¥ê¥À¥¤¥ì¥¯¥È¤Ï¤·¤Ê¤¤
+	//ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå‡¦ç†
+	//å¼•æ•°ï¼šã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±
+	//æˆ»ã‚Šå€¤ï¼šTrue Or False
+	//æ³¨æ„ï¼šãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã¯ã—ãªã„
 	function log_out($data=array()){
 		$this->err_msg = "";
-		//¥í¥°¥¢¥¦¥È½èÍı
+		//ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå‡¦ç†
 		If(!$this->chk_input($data,"id")){
 			return false;
 		}
-		//¤³¤³¤Ï¥Ş¥Ë¥å¥¢¥ë¤É¤ª¤ê¤Ë½èÍı¡¦¡¦¡¦
-		// ¥»¥Ã¥·¥ç¥ó¤Î½é´ü²½
-		// session_name("something")¤ò»ÈÍÑ¤·¤Æ¤¤¤ë¾ì¹ç¤ÏÆÃ¤Ë¤³¤ì¤òËº¤ì¤Ê¤¤¤è¤¦¤Ë!
+		//ã“ã“ã¯ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ã©ãŠã‚Šã«å‡¦ç†ãƒ»ãƒ»ãƒ»
+		// ã‚»ãƒƒã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–
+		// session_name("something")ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ç‰¹ã«ã“ã‚Œã‚’å¿˜ã‚Œãªã„ã‚ˆã†ã«!
 		session_start();
 
-		// ¥»¥Ã¥·¥ç¥óÊÑ¿ô¤òÁ´¤Æ²ò½ü¤¹¤ë
+		// ã‚»ãƒƒã‚·ãƒ§ãƒ³å¤‰æ•°ã‚’å…¨ã¦è§£é™¤ã™ã‚‹
 		$_SESSION = array();
 
-		// ¥»¥Ã¥·¥ç¥ó¤òÀÚÃÇ¤¹¤ë¤Ë¤Ï¥»¥Ã¥·¥ç¥ó¥¯¥Ã¥­¡¼¤âºï½ü¤¹¤ë¡£
-		// Note: ¥»¥Ã¥·¥ç¥ó¾ğÊó¤À¤±¤Ç¤Ê¤¯¥»¥Ã¥·¥ç¥ó¤òÇË²õ¤¹¤ë¡£
+		// ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’åˆ‡æ–­ã™ã‚‹ã«ã¯ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚¯ãƒƒã‚­ãƒ¼ã‚‚å‰Šé™¤ã™ã‚‹ã€‚
+		// Note: ã‚»ãƒƒã‚·ãƒ§ãƒ³æƒ…å ±ã ã‘ã§ãªãã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’ç ´å£Šã™ã‚‹ã€‚
 		if (isset($_COOKIE[session_name()])) {
 			setcookie(session_name(), '', time()-42000, '/');
 		}
 
-		// ºÇ½ªÅª¤Ë¡¢¥»¥Ã¥·¥ç¥ó¤òÇË²õ¤¹¤ë
+		// æœ€çµ‚çš„ã«ã€ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’ç ´å£Šã™ã‚‹
 		session_destroy();
-		//¥»¥Ã¥·¥ç¥ó¥Õ¥¡¥¤¥ë¤âºï½ü¤¹¤ë
+		//ã‚»ãƒƒã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã‚‚å‰Šé™¤ã™ã‚‹
 		$session_file = session_save_path() . '/sess_' . $session_id;
 		if ( is_file( $session_file ) ) {
 			unlink( $session_file );
 		}
-		//¥í¥°¤Ëµ­Ï¿
-		If(!$this->record($data["id"],"¥í¥°¥¢¥¦¥È")){
-			$this->err_msg = "¥·¥¹¥Æ¥à¥¨¥é¡¼<BR>";
+		//ãƒ­ã‚°ã«è¨˜éŒ²
+		If(!$this->record($data["id"],"ãƒ­ã‚°ã‚¢ã‚¦ãƒˆ")){
+			$this->err_msg = "ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼<BR>";
 		}
 		return $this->ret($this->err_msg);
 	}
-	//¥Ñ¥¹¥ï¡¼¥ÉÊÑ¹¹½èÍı
-	//°ú¿ô¡§¥¢¥«¥¦¥ó¥È¾ğÊó
-	//Ìá¤êÃÍ¡§True Or False
-	//Ãí°Õ¡§¥Ñ¥é¥á¥¿¤Î¥Á¥§¥Ã¥¯¤Ï»öÁ°¤Ë¹Ô¤Ã¤Æ¤ª¤¯¤³¤È
+	//ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å¤‰æ›´å‡¦ç†
+	//å¼•æ•°ï¼šã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±
+	//æˆ»ã‚Šå€¤ï¼šTrue Or False
+	//æ³¨æ„ï¼šãƒ‘ãƒ©ãƒ¡ã‚¿ã®ãƒã‚§ãƒƒã‚¯ã¯äº‹å‰ã«è¡Œã£ã¦ãŠãã“ã¨
 	function change_password($data=array()){
 		$this->err_msg = "";
 		$tmp = array();
-		//ÆşÎÏ¥Á¥§¥Ã¥¯
+		//å…¥åŠ›ãƒã‚§ãƒƒã‚¯
 		If(!$this->chk_input($data,"id")){
 			return false;
 		}
 		If(!$this->chk_input($data,"password")){
 			return false;
 		}
-		//Â¸ºß³ÎÇ§
+		//å­˜åœ¨ç¢ºèª
 		if ($this->getcount("id='" . $this->escape($data["id"]) . "'") == 0){
-			$this->err_msg = "¥·¥¹¥Æ¥à¥¨¥é¡¼<BR>";
+			$this->err_msg = "ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼<BR>";
 			return False;
 		}
-		//¥­¡¼¥»¥Ã¥È
-		//¥Ñ¥¹¥ï¡¼¥É¤òMD5¤ÇÊÑ´¹¤¹¤ë
+		//ã‚­ãƒ¼ã‚»ãƒƒãƒˆ
+		//ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’MD5ã§å¤‰æ›ã™ã‚‹
 		$tmp["password"] = md5($data["password"]);
 		$tmp["id"] = $data["id"];
-		//ÅĞÏ¿Æü¥»¥Ã¥È
+		//ç™»éŒ²æ—¥ã‚»ãƒƒãƒˆ
 		$tmp["touroku_date"] = $this->get_date();
 		$tmp["touroku_time"] = $this->get_time();
-		//ÅĞÏ¿
-		//¥í¥°¤Ëµ­Ï¿
-		If (!$this->record($tmp["id"],"¥Ñ¥¹¥ï¡¼¥ÉÊÑ¹¹")){
-			$this->err_msg = "¥·¥¹¥Æ¥à¥¨¥é¡¼<BR>";
+		//ç™»éŒ²
+		//ãƒ­ã‚°ã«è¨˜éŒ²
+		If (!$this->record($tmp["id"],"ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å¤‰æ›´")){
+			$this->err_msg = "ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼<BR>";
 			return FALSE;
 		}
 		If (!$this->updateby($tmp,'id=' . $this->escape($tmp["id"]))){
-			$this->err_msg = "¥Ñ¥¹¥ï¡¼¥É¤ÎÊÑ¹¹¤Ë¼ºÇÔ¤·¤Ş¤·¤¿<BR>";
+			$this->err_msg = "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã®å¤‰æ›´ã«å¤±æ•—ã—ã¾ã—ãŸ<BR>";
 		}
 		return $this->ret($this->err_msg);
 	}
-	//¥í¥°¥¤¥ó½èÍı
-	//°ú¿ô¡§¥¢¥«¥¦¥ó¥È¾ğÊó
-	//Ìá¤êÃÍ¡§True Or False
-	//Ãí°Õ¡§¥Ñ¥é¥á¥¿¤Î¥Á¥§¥Ã¥¯¤Ï»öÁ°¤Ë¹Ô¤Ã¤Æ¤ª¤¯¤³¤È
+	//ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†
+	//å¼•æ•°ï¼šã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±
+	//æˆ»ã‚Šå€¤ï¼šTrue Or False
+	//æ³¨æ„ï¼šãƒ‘ãƒ©ãƒ¡ã‚¿ã®ãƒã‚§ãƒƒã‚¯ã¯äº‹å‰ã«è¡Œã£ã¦ãŠãã“ã¨
 	function login($data=array()){
 		$this->err_msg = "";
 		$tmp = array();
-		//´ÊÃ±¥í¥°¥¤¥ó¤Ç¤Ï¤Ê¤¤¤Ş¤¿¤ÏÈóÂĞ±şÃ¼Ëö
+		//ç°¡å˜ãƒ­ã‚°ã‚¤ãƒ³ã§ã¯ãªã„ã¾ãŸã¯éå¯¾å¿œç«¯æœ«
 		If(!$this->chk_input($data,"password")){
 			return false;
 		}
 		If(!$this->chk_input($data,"user_name")){
 			return false;
 		}
-		//¥í¥°¥¤¥ó¥Á¥§¥Ã¥¯
+		//ãƒ­ã‚°ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯
 		$tmp=array(
 					'user_name' => $data["user_name"],
 					'password' => md5($data["password"])
 					);
 		if ($this->getcount($tmp) == 1){
-			//¥í¥°¥¤¥óOK
-			//¥æ¡¼¥¶¡¼¾ğÊó¤ò¥»¥Ã¥·¥ç¥ó¤ØÂÔÈò
+			//ãƒ­ã‚°ã‚¤ãƒ³OK
+			//ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒã‚·ãƒ§ãƒ³ã¸å¾…é¿
 			IF(!$_SESSION["RSS"]["USER"] = $this->findone($tmp)){
-				$this->err_msg="¥·¥¹¥Æ¥à¥¨¥é¡¼<BR>";
+				$this->err_msg="ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼<BR>";
 				return FALSE;
 			}
-			//¥í¥°¤Ëµ­Ï¿
-			IF (!$this->record($_SESSION["RSS"]["USER"]["id"],"¥í¥°¥¤¥ó")){
-				$this->err_msg = "¥·¥¹¥Æ¥à¥¨¥é¡¼<BR>";
+			//ãƒ­ã‚°ã«è¨˜éŒ²
+			IF (!$this->record($_SESSION["RSS"]["USER"]["id"],"ãƒ­ã‚°ã‚¤ãƒ³")){
+				$this->err_msg = "ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼<BR>";
 				return FALSE;
 			}
 			return TRUE;
 		}else{
-			$this->err_msg = "ID¤Ş¤¿¤Ï¥Ñ¥¹¥ï¡¼¥É¤¬°ã¤¤¤Ş¤¹¡£<BR>";
+			$this->err_msg = "IDã¾ãŸã¯ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé•ã„ã¾ã™ã€‚<BR>";
 			return FALSE;
 		}
 	}
 
-	//¥í¥°¥¤¥ó½èÍı(·ÈÂÓ)
-	//°ú¿ô¡§¥¢¥«¥¦¥ó¥È¾ğÊó
-	//Ìá¤êÃÍ¡§True Or False
-	//Ãí°Õ¡§¥Ñ¥é¥á¥¿¤Î¥Á¥§¥Ã¥¯¤Ï»öÁ°¤Ë¹Ô¤Ã¤Æ¤ª¤¯¤³¤È
+	//ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†(æºå¸¯)
+	//å¼•æ•°ï¼šã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±
+	//æˆ»ã‚Šå€¤ï¼šTrue Or False
+	//æ³¨æ„ï¼šãƒ‘ãƒ©ãƒ¡ã‚¿ã®ãƒã‚§ãƒƒã‚¯ã¯äº‹å‰ã«è¡Œã£ã¦ãŠãã“ã¨
 	function mb_login($data=array()){
 		$this->err_msg = "";
 		$tmp = array();
-		//´ÊÃ±¥í¥°¥¤¥ó
-		//ÆşÎÏ¥Á¥§¥Ã¥¯
+		//ç°¡å˜ãƒ­ã‚°ã‚¤ãƒ³
+		//å…¥åŠ›ãƒã‚§ãƒƒã‚¯
 		If(!$this->chk_input($data,"mb_key")){
 			return false;
 		}
-		//¥í¥°¥¤¥ó¥Á¥§¥Ã¥¯
+		//ãƒ­ã‚°ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯
 		$tmp=array(
 					'mb_key' => $data["mb_key"],
 					);
 		if ($this->getcount($tmp) == 1){
-			//¥í¥°¥¤¥óOK
-			//¥æ¡¼¥¶¡¼¾ğÊó¤ò¥»¥Ã¥·¥ç¥ó¤ØÂÔÈò
+			//ãƒ­ã‚°ã‚¤ãƒ³OK
+			//ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒã‚·ãƒ§ãƒ³ã¸å¾…é¿
 			IF(!$_SESSION["RSS"]["USER"] = $this->findone($tmp)){
-				$this->err_msg="¥·¥¹¥Æ¥à¥¨¥é¡¼<BR>";
+				$this->err_msg="ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼<BR>";
 				return FALSE;
 			}
-			//¥í¥°¤Ëµ­Ï¿
-			If(!$this->record($_SESSION["RSS"]["USER"]["id"],"·ÈÂÓ¤è¤ê¥í¥°¥¤¥ó")){
-				$this->err_msg = "¥·¥¹¥Æ¥à¥¨¥é¡¼<BR>";
+			//ãƒ­ã‚°ã«è¨˜éŒ²
+			If(!$this->record($_SESSION["RSS"]["USER"]["id"],"æºå¸¯ã‚ˆã‚Šãƒ­ã‚°ã‚¤ãƒ³")){
+				$this->err_msg = "ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼<BR>";
 				return FALSE;
 			}
 			return TRUE;
 		}else{
-			$this->err_msg = "³ºÅö¤¹¤ë·ÈÂÓ¤ÏÅĞÏ¿¤µ¤ì¤Æ¤¤¤Ş¤»¤ó<BR>";
+			$this->err_msg = "è©²å½“ã™ã‚‹æºå¸¯ã¯ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“<BR>";
 			return FALSE;
 		}
 	}
-	//¥á¡¼¥ë¥¢¥É¥ì¥¹ÄÉ²Ã½èÍı
-	//°ú¿ô¡§¥¢¥«¥¦¥ó¥È¾ğÊó
-	//Ìá¤êÃÍ¡§True Or False
-	//Ãí°Õ¡§¥Ñ¥é¥á¥¿¤Î¥Á¥§¥Ã¥¯¤Ï»öÁ°¤Ë¹Ô¤Ã¤Æ¤ª¤¯¤³¤È
+	//ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹è¿½åŠ å‡¦ç†
+	//å¼•æ•°ï¼šã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±
+	//æˆ»ã‚Šå€¤ï¼šTrue Or False
+	//æ³¨æ„ï¼šãƒ‘ãƒ©ãƒ¡ã‚¿ã®ãƒã‚§ãƒƒã‚¯ã¯äº‹å‰ã«è¡Œã£ã¦ãŠãã“ã¨
 	function add_email($data=array()){
 		$this->err_msg = "";
 		$tmp = array();
-		//ÆşÎÏ¥Á¥§¥Ã¥¯
+		//å…¥åŠ›ãƒã‚§ãƒƒã‚¯
 		If(!$this->chk_input($data,"id")){
 			return false;
 		}
 		If(!$this->chk_input($data,"e-mail")){
 			return false;
 		}
-		//Â¸ºß³ÎÇ§
+		//å­˜åœ¨ç¢ºèª
 		if ($this->getcount("id='" . $this->escape($data["id"]) . "'") == 0){
-			$this->err_msg = "¥·¥¹¥Æ¥à¥¨¥é¡¼<BR>";
+			$this->err_msg = "ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼<BR>";
 			return False;
 		}
-		//¥­¡¼¥»¥Ã¥È
+		//ã‚­ãƒ¼ã‚»ãƒƒãƒˆ
 		$tmp["e-mail"] = $data["e-mail"];
 		$tmp["id"] = $data["id"];
-		//ÅĞÏ¿Æü¥»¥Ã¥È
+		//ç™»éŒ²æ—¥ã‚»ãƒƒãƒˆ
 		$tmp["touroku_date"] = $this->get_date();
 		$tmp["touroku_time"] = $this->get_time();
-		//ÅĞÏ¿
-		//¥í¥°¤Ëµ­Ï¿
-		If (!$this->record($tmp["id"],"¥á¡¼¥ë¥¢¥É¥ì¥¹ÅĞÏ¿")){
-			$this->err_msg = "¥·¥¹¥Æ¥à¥¨¥é¡¼<BR>";
+		//ç™»éŒ²
+		//ãƒ­ã‚°ã«è¨˜éŒ²
+		If (!$this->record($tmp["id"],"ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ç™»éŒ²")){
+			$this->err_msg = "ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼<BR>";
 			return FALSE;
 		}
 		If (!$this->updateby($tmp,'id=' . $this->escape($tmp["id"]))){
-			$this->err_msg = "¥á¡¼¥ë¥¢¥É¥ì¥¹¤ÎÅĞÏ¿¤Ë¼ºÇÔ¤·¤Ş¤·¤¿<BR>";
+			$this->err_msg = "ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ç™»éŒ²ã«å¤±æ•—ã—ã¾ã—ãŸ<BR>";
 		}
 		return $this->ret($this->err_msg);
 	}

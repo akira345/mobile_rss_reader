@@ -1,32 +1,32 @@
 <?php
 	require_once( "./config/config.php" );
 	require_once( "../cheetan/cheetan.php" );
-//¥æ¡¼¥¶Ç§¾Ú¤ò¤«¤±¤ë
+//ãƒ¦ãƒ¼ã‚¶èªè¨¼ã‚’ã‹ã‘ã‚‹
 function is_secure(&$c){
 	return true;
 }
 
 function action( &$c )
 {
-//¥³¥ó¥È¥í¡¼¥é
+//ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
 	if(count( $_POST) ){
-		//¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸ÍÑ
+		//ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨
 		$err="";
-		//¥Ç¡¼¥¿ÍÑ
+		//ãƒ‡ãƒ¼ã‚¿ç”¨
 		$data=array();
 		//id
 		$id = $_SESSION["RSS"]["USER"]["id"];
 		If($_POST["kill"]){
-			//¥¢¥«¥¦¥ó¥Èºï½ü
+			//ã‚¢ã‚«ã‚¦ãƒ³ãƒˆå‰Šé™¤
 			$data = array(
 						"id" => $id
 						);
 			$c->login_user->kill_acount($data);
 		}
-		//£Ô£Ï£Ð¤Ø¥ê¥À¥¤¥ì¥¯¥È
+		//ï¼´ï¼¯ï¼°ã¸ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆ
 		$c->redirect('index.php');
 	}
-//¥Æ¥ó¥×¥ì¡¼¥È¥Õ¥¡¥¤¥ë»ØÄê
+//ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«æŒ‡å®š
 	$c->SetViewFile( "./tmplate/kill_acount.html" );
 }
 ?>

@@ -1,8 +1,8 @@
-<p>���ӣңӣӥ꡼����������<br><br>�ңӣӤ��Խ����������<br>
+<p>携帯ＲＳＳリーダ管理画面<br><br>ＲＳＳを編集・削除する<br>
 
 <br>
 
-<p>������Ͽ����Ƥ���ңӣӤϰʲ��ΤȤ���Ǥ���<br><br>
+<p>現在登録されているＲＳＳは以下のとおりです。<br><br>
 
 <font color=red><?php echo $data["err2"];?></font>
 
@@ -14,24 +14,24 @@
     <td valign="top" width="3%" align="right">
       <p align="center">No</p></td>
     <td width="30%">RSS</td>
-    <td width="30%">������</td>
-    <td width="5%">�����Ѵ�</td>
-    <td>����ɽ�����</td>
-    <td>���ƥ���</td>
-	<td width="5%">��ɽ��</td>
-	<td width="5%">�᡼���ۿ�</td>
-	<td width="30%">�������<BR>
-(���ԤǶ��ڤ�ޤ�����ʸ����ʸ�����Ҥ餬�ʥ������ʡ�Ⱦ�����Ѥ϶��̤����ʤ�٤��ޥå������ޤ�����<BR>
-<font color="red">�᡼���ۿ���ǽ�ϥ᡼�륢�ɥ쥹����Ͽ����Ƥ�����ͭ���Ǥ�</font><BR>
-<font color="red">Ʊ�������ˤϺ���1��������ޤ���</font><BR></td>
+    <td width="30%">コメント</td>
+    <td width="5%">携帯変換</td>
+    <td>一覧表示件数</td>
+    <td>カテゴリ</td>
+	<td width="5%">非表示</td>
+	<td width="5%">メール配信</td>
+	<td width="30%">キーワード<BR>
+(改行で区切ります。大文字小文字、ひらがなカタカナ、半角全角は区別せずなるべくマッチさせます。）<BR>
+<font color="red">メール配信機能はメールアドレスが登録されている場合有効です</font><BR>
+<font color="red">同じ記事には最大1週間送りません</font><BR></td>
 
-    <td width="5%">����</td>
-    <td width="5%">�����</td></tr>
+    <td width="5%">更新</td>
+    <td width="5%">削除　</td></tr>
 <?php foreach( $data["datas"] as $var ){ 
-	$i += 1;	//������
+	$i += 1;	//カウンタ
 ?>
 <?php
-//�����쥳���ɤο����Ѥ��Ƥߤ�
+//更新レコードの色を変えてみる
 	If ($var["no"] == $data["change_no"]){
 		echo "<tr bgcolor=orange>";
 	}else{
@@ -43,42 +43,42 @@
     <td valign="right" align="right"><?php echo $i?></td>
 	<!--RSS-->
     <td><input size="43" name="rss_url" value="<?php echo html_entity_decode($var["rss_url"], ENT_QUOTES);?>" <?php echo $c->mylib->set_ime("IME_OFF")?>></td>
-	<!--������-->
+	<!--コメント-->
     <td><input size="43" name="comment" value="<?php echo $var["comment"];?>" <?php echo $c->mylib->set_ime("IME_ON")?>></td>
-	<!--�����Ѵ�-->
+	<!--携帯変換-->
     <td aligh="centoer">
       <p align="center"><?php echo $c->mylib->make_chkbox($var["cnv_keitai"],"cnv_keitai");?></p>
 	</td>
-	<!--ɽ�����-->
+	<!--表示件数-->
     <td>
       <p align="center"><input size="4" maxlength="3" name="view_cnt" value="<?php echo $var["view_cnt"]?>"></p>
 	</td>
-	<!--���ƥ���-->
+	<!--カテゴリ-->
     <td>
       <p align="center">
 	<?php echo $c->common_lib->make_category_list($c,'category_cd',$_SESSION["RSS"]["USER"]["id"],$var["category_cd"]);?>
 	</p>
 	</td>
-	<!--��ɽ�������å�-->
+	<!--非表示チェック-->
     <td aligh="center">
       <p align="center"><?php echo $c->mylib->make_chkbox($var["hidden_chk"],"hidden_chk")?></p>
 	</td>
-	<!--�᡼�����������å�-->
+	<!--メール送信チェック-->
     <td aligh="center">
       <p align="center"><?php echo $c->mylib->make_chkbox($var["haisin_flg"],"haisin_flg")?></p>
 	</td>
-	<!--�������-->
+	<!--キーワード-->
     <td>
         <textarea name="keyword" rows="4" cols="40"><?php echo $var["keyword"]?></textarea>
     </td>
 
-	<!--�����ܥ���-->
+	<!--更新ボタン-->
     <td>
-      <p align="center"><input type="submit" value="����" name="update"></p>
+      <p align="center"><input type="submit" value="更新" name="update"></p>
 	</td>
-	<!--����ܥ���-->
+	<!--削除ボタン-->
     <td>
-      <p align="center"><input type="submit" value="���" name="del"></p>
+      <p align="center"><input type="submit" value="削除" name="del"></p>
 	</td>
       <input type="hidden" name="no" value="<?php echo $var["no"];?>">
       <input type="hidden" name="token" value="<?php echo $data["token"]?>">

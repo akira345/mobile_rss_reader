@@ -1,20 +1,20 @@
 <center>
-╥хбс╔А╔╓╔С╔А╔к╔Е║╪
+Ф░╨Е╦╞Ц┐║Ц┌╓Ц┐ЁЦ┐║Ц┐▀Ц┐╔Ц┐╪
 </center>
 <hr>
 <?php
 	If (is_array($category_datas) == TRUE){
 ?>
-<!--╔╚╔ф╔╢╔Йепо©╓╛╓╒╓К╬Л╧Г-->
-<p>╔╚╔ф╔╢╔Й╓Ра╙бР╓╥╓ф╓╞╓ю╓╣╓╓</p>
+<!--Ц┌╚Ц┐├Ц┌╢Ц┐╙Г≥╩И▄╡Ц│▄Ц│┌Ц┌▀Е═╢Е░┬-->
+<p>Ц┌╚Ц┐├Ц┌╢Ц┐╙Ц┌▓И│╦Ф┼·Ц│≈Ц│╕Ц│▐Ц│═Ц│∙Ц│└</p>
 <center><h6>
 <?php 
 	foreach( $category_datas as $var ){ 
-	$i += 1;	//╔╚╔╕╔С╔©
+	$i += 1;	//Ц┌╚Ц┌╕Ц┐ЁЦ┌©
 ?>
 <a href=./select_rss.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>&category_cd=<?php echo $var["no"];?>><?php echo $var["category"];?></a>/
 <?php
-	//3╡С╡С╓ц╓©╓И╡Ч╧т
+	//3Е⌡·Е⌡·Ц│ёЦ│÷Ц┌┴Ф■╧Х║▄
 	If ($i % 3 == 0){ echo "</h6></center><BR><center><h6>"; }
 ?>
 <?php
@@ -28,8 +28,8 @@ echo "</center>";
 <?php
 	If (is_array($rss_datas) == TRUE){
 ?>
-<!--╔╚╔ф╔╢╔Йепо©╓╛╔╪╔М╓н╬Л╧Г-->
-<p>╟й╡╪╓нRSS╓╛епо©╓╣╓Л╓ф╓╓╓ч╓╧</p>
+<!--Ц┌╚Ц┐├Ц┌╢Ц┐╙Г≥╩И▄╡Ц│▄Ц┌╪Ц┐╜Ц│╝Е═╢Е░┬-->
+<p>Д╩╔Д╦▀Ц│╝RSSЦ│▄Г≥╩И▄╡Ц│∙Ц┌▄Ц│╕Ц│└Ц│╬Ц│≥</p>
 <?php
 		 foreach( $rss_datas as $var ){ 
 ?>
@@ -43,9 +43,9 @@ echo "</center>";
 If($easy_login_chk == TRUE){
 ?>
 <BR><br>
-╢йц╠╔М╔╟╔╓╔С╓непо©<br>
+Г╟║Е█≤Ц┐╜Ц┌╟Ц┌╓Ц┐ЁЦ│╝Г≥╩И▄╡<br>
 <form method="POST" action="./mb_main.php" utn>
-  <input type="submit" name="submit" value="епо©" />
+  <input type="submit" name="submit" value="Г≥╩И▄╡" />
   <input type=hidden name="<?php echo session_name()?>" value="<?php echo htmlspecialchars(session_id(),ENT_QUOTES)?>">
 </form>
 <?php echo $err?>
@@ -53,12 +53,12 @@ If($easy_login_chk == TRUE){
 }
 ?>
 <BR>
-<a href="./chg_pw.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>">╔я╔╧╔О║╪╔ийя╧╧</a><BR>
+<a href="./chg_pw.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>">Ц┐▒Ц┌╧Ц┐╞Ц┐╪Ц┐┴Е╓┴Ф⌡╢</a><BR>
 
 <BR><BR>
-<a href="./logout.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>">╔М╔╟╔╒╔╕╔х</a><BR>
+<a href="./logout.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>">Ц┐╜Ц┌╟Ц┌╒Ц┌╕Ц┐┬</a><BR>
 <BR>
 <BR>
 <BR>
 <BR>
-<a href="./kill_acount.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>">╔╒╔╚╔╕╔С╔х╨О╫Э</a><BR>
+<a href="./kill_acount.php?<?php echo htmlspecialchars( SID,ENT_QUOTES )?>">Ц┌╒Ц┌╚Ц┌╕Ц┐ЁЦ┐┬Е┴┼И≥╓</a><BR>

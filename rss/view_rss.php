@@ -1,63 +1,63 @@
 <?php
 	require_once( "./component/rss_fetch.inc");
 	define('MAGPIE_OUTPUT_ENCODING', 'utf-8');
-	define('MAGPIE_CACHE_DIR','./component/cache');//¥é¥¤¥Ö¥é¤ê¤«¤é¤Î¥Ñ¥¹
-	//¤Á¤¤¤¿¤ó¤Ï¤¢¤È¤ËÆÉ¤ß¹þ¤Þ¤¹¤³¤È
+	define('MAGPIE_CACHE_DIR','./component/cache');//ãƒ©ã‚¤ãƒ–ãƒ©ã‚Šã‹ã‚‰ã®ãƒ‘ã‚¹
+	//ã¡ã„ãŸã‚“ã¯ã‚ã¨ã«èª­ã¿è¾¼ã¾ã™ã“ã¨
 	require_once( "./config/config.php" );
 	require_once( "../cheetan/cheetan.php" );
-//¥æ¡¼¥¶Ç§¾Ú¤ò¤«¤±¤ë
+//ãƒ¦ãƒ¼ã‚¶èªè¨¼ã‚’ã‹ã‘ã‚‹
 function is_secure(&$c){
 	return true;
 }
 function action( &$c )
 {
-	//¥³¥ó¥È¥í¡¼¥é
-	//¥æ¡¼¥¶£É£Ä¥»¥Ã¥È
+	//ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+	//ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤ã‚»ãƒƒãƒˆ
 	$user_id = $_SESSION["RSS"]["USER"]["id"];
 	If (count($_GET)){
-		//Get¤Ë²¿¤«Æþ¤Ã¤Æ¤¤¤ë
-		//¥Ç¡¼¥¿ÅÐÏ¿ÍÑ
+		//Getã«ä½•ã‹å…¥ã£ã¦ã„ã‚‹
+		//ãƒ‡ãƒ¼ã‚¿ç™»éŒ²ç”¨
 		$data=array();
-		//GET¥Ç¡¼¥¿¤òÆþ¤ì¤ë
+		//GETãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹
 		$data["rss_cd"]=$c->s->gett("rss_cd");
 		If ($data["rss_cd"] != ""){
-			//¥³¡¼¥É¤¢¤ê
+			//ã‚³ãƒ¼ãƒ‰ã‚ã‚Š
 			$tmp = array(
 							'id' => $user_id,
 							'no' => $data["rss_cd"]
 						);
 			If ($c->rss_data->getcount($tmp) >0){
-				//¥Ç¡¼¥¿¤¢¤ê
+				//ãƒ‡ãƒ¼ã‚¿ã‚ã‚Š
 				$datas=$c->rss_data->findone($tmp);
-				//RSS¤ÎURL
+				//RSSã®URL
 				$url = $datas["rss_url"];
-				//·ÈÂÓÊÑ´¹¤Ø¤ÎURL
-				//Google¤ò»È¤Ã¤Æ¤ß¤ë
+				//æºå¸¯å¤‰æ›ã¸ã®URL
+				//Googleã‚’ä½¿ã£ã¦ã¿ã‚‹
 				$keitai_cnv = 'http://www.google.co.jp/gwt/n?u=';
-				//·ÈÂÓÊÑ´¹¤¬É¬Í×¤«¤É¤¦¤«
+				//æºå¸¯å¤‰æ›ãŒå¿…è¦ã‹ã©ã†ã‹
 				if($datas["cnv_keitai"] == 0){
 					$keitai_cnv = null;
 				}
-				//RSS¤Î¥Ñ¡¼¥º
+				//RSSã®ãƒ‘ãƒ¼ã‚º
 				$url = html_entity_decode($url, ENT_QUOTES);
 				$rss = fetch_rss($url);
-				//¥Ú¡¼¥¸¥ó¥°½èÍý
+				//ãƒšãƒ¼ã‚¸ãƒ³ã‚°å‡¦ç†
 				if (count($_GET['page'])){
 					$now_page = $c->s->gett("page");
 				}else{
 					$now_page = 1;
 				}
-				//¹­¹ð½üµî¤Î°Ù¡¢°ì²óRSS¤òÅ¸³«¤¹¤ë
+				//åºƒå‘Šé™¤åŽ»ã®ç‚ºã€ä¸€å›žRSSã‚’å±•é–‹ã™ã‚‹
 				$rss_data = array();
 				foreach ($rss->items as $item){
 					$title = strip_tags(mb_convert_encoding($item['title'],$c->encoding,'UTF8'));
 					$summary = strip_tags(mb_convert_encoding($item['summary'],$c->encoding,'UTF8'));
-					$summary = mb_strimwidth($summary,0,100,"...",$c->encoding);	//100Ê¸»ú¤Þ¤Ç
+					$summary = mb_strimwidth($summary,0,100,"...",$c->encoding);	//100æ–‡å­—ã¾ã§
 					$wk_url = $keitai_cnv . htmlspecialchars(mb_convert_encoding($item['link'],$c->encoding,'UTF8'));
-					//¹­¹ðNG½èÍý
-					$ad_words = array("[PR]","¡ÚPR¡Û","AD:","¡ÎPR¡Ï","AD¡§","¹­¹ð¡§","PR:","PR¡§","Info:");
+					//åºƒå‘ŠNGå‡¦ç†
+					$ad_words = array("[PR]","ã€PRã€‘","AD:","ï¼»PRï¼½","ADï¼š","åºƒå‘Šï¼š","PR:","PRï¼š","Info:");
 					If ($c->common_lib->array_strpos($title,$ad_words) == TRUE){
-						continue;	//°Ê²¼¤Î½èÍý¥¹¥­¥Ã¥×
+						continue;	//ä»¥ä¸‹ã®å‡¦ç†ã‚¹ã‚­ãƒƒãƒ—
 					}
 					$tmp = array(
 								"title" => $title,
@@ -69,54 +69,54 @@ function action( &$c )
 
 
 
-				//Á´¥Ç¡¼¥¿·ï¿ô¼èÆÀ
+				//å…¨ãƒ‡ãƒ¼ã‚¿ä»¶æ•°å–å¾—
 				//$all_count = count($rss->items);
 				$all_count = count($rss_data);
-				//É½¼¨¥Ú¡¼¥¸¿ô
+				//è¡¨ç¤ºãƒšãƒ¼ã‚¸æ•°
 				If($datas["view_cnt"] == 0){
-					$datas["view_cnt"] = 9999;//¥Ú¡¼¥¸¥ó¥°¤µ¤»¤Ê¤¤
+					$datas["view_cnt"] = 9999;//ãƒšãƒ¼ã‚¸ãƒ³ã‚°ã•ã›ãªã„
 				}
-				//¥Ú¡¼¥¸¥ó¥°ÀßÄê
+				//ãƒšãƒ¼ã‚¸ãƒ³ã‚°è¨­å®š
 				$option = array(
-					'baseUrl'	=> 'view_rss.php',		// ¥ê¥ó¥¯¤ÎURL
-					'queryStr'	=> htmlspecialchars( SID,ENT_QUOTES ) . '&rss_cd=' . $data["rss_cd"] .'&page',			// ¥¯¥¨¥ê¡¼Ê¸»úÎó
-					'curPage'	=> $now_page,		// ¸½ºß¤Î¥Ú¡¼¥¸ÈÖ¹æ
-					'perPage'	=> $datas["view_cnt"],				// 1²èÌÌÅö¤¿¤ê¤Î¥ê¥¹¥È¿ô
-					'totalRows'  	=> $all_count,	// ¥ê¥¹¥È¤Î¹ç·×¿ô
-					'numLinks'	=> 2,				// Á°¸å¤Î¥ê¥ó¥¯¿ô
-					'pageSummary'	=> TRUE,		// ¥µ¥Þ¥ê¡¼¤ÎÉ½¼¨
-					'firstLink'	=> '¢ã',			// "ºÇ½é" ¤Î¥Ú¡¼¥¸¤Ø¤Î¥ê¥ó¥¯Ê¸»úÎó
-					'prevLink'	=> '¡ã',			// "Á°" ¤Î¥Ú¡¼¥¸¤Ø¤Î¥ê¥ó¥¯Ê¸»úÎó
-					'nextLink'	=> '¡ä',			// "¼¡" ¤Î¥Ú¡¼¥¸¤Ø¤Î¥ê¥ó¥¯Ê¸»úÎó
-					'lastLink'	=> '¢ä',			// "ºÇ¸å" ¤Î¥Ú¡¼¥¸¤Ø¤Î¥ê¥ó¥¯Ê¸»úÎó
-					'fullTagOpen'	=> '<ul>',		// ¥Ú¡¼¥¸¥Í¡¼¥·¥ç¥ó¤Î³«»Ï¥¿¥°
-					'fullTagClose'	=> '</ul>',		// ¥Ú¡¼¥¸¥Í¡¼¥·¥ç¥ó¤Î½ªÎ»¥¿¥°
-					'linkTagOpen'	=> '',			// ¥Ú¡¼¥¸¥ê¥ó¥¯¤Î³«»Ï¥¿¥°
-					'linkTagClose'	=> '',			// ¥Ú¡¼¥¸¥ê¥ó¥¯¤Î½ªÎ»¥¿¥°
-					'curTagOpen'	=> '<B>',		// "¸½ºß" ¤Î¥Ú¡¼¥¸¤ÎÈÖ¹æ¤Î³«»Ï¥¿¥°
-					'curTagClose'	=> '</B>',		// "¸½ºß" ¤Î¥Ú¡¼¥¸¤ÎÈÖ¹æ¤Î½ªÎ»¥¿¥°
+					'baseUrl'	=> 'view_rss.php',		// ãƒªãƒ³ã‚¯ã®URL
+					'queryStr'	=> htmlspecialchars( SID,ENT_QUOTES ) . '&rss_cd=' . $data["rss_cd"] .'&page',			// ã‚¯ã‚¨ãƒªãƒ¼æ–‡å­—åˆ—
+					'curPage'	=> $now_page,		// ç¾åœ¨ã®ãƒšãƒ¼ã‚¸ç•ªå·
+					'perPage'	=> $datas["view_cnt"],				// 1ç”»é¢å½“ãŸã‚Šã®ãƒªã‚¹ãƒˆæ•°
+					'totalRows'  	=> $all_count,	// ãƒªã‚¹ãƒˆã®åˆè¨ˆæ•°
+					'numLinks'	=> 2,				// å‰å¾Œã®ãƒªãƒ³ã‚¯æ•°
+					'pageSummary'	=> TRUE,		// ã‚µãƒžãƒªãƒ¼ã®è¡¨ç¤º
+					'firstLink'	=> 'â‰ª',			// "æœ€åˆ" ã®ãƒšãƒ¼ã‚¸ã¸ã®ãƒªãƒ³ã‚¯æ–‡å­—åˆ—
+					'prevLink'	=> 'ï¼œ',			// "å‰" ã®ãƒšãƒ¼ã‚¸ã¸ã®ãƒªãƒ³ã‚¯æ–‡å­—åˆ—
+					'nextLink'	=> 'ï¼ž',			// "æ¬¡" ã®ãƒšãƒ¼ã‚¸ã¸ã®ãƒªãƒ³ã‚¯æ–‡å­—åˆ—
+					'lastLink'	=> 'â‰«',			// "æœ€å¾Œ" ã®ãƒšãƒ¼ã‚¸ã¸ã®ãƒªãƒ³ã‚¯æ–‡å­—åˆ—
+					'fullTagOpen'	=> '<ul>',		// ãƒšãƒ¼ã‚¸ãƒãƒ¼ã‚·ãƒ§ãƒ³ã®é–‹å§‹ã‚¿ã‚°
+					'fullTagClose'	=> '</ul>',		// ãƒšãƒ¼ã‚¸ãƒãƒ¼ã‚·ãƒ§ãƒ³ã®çµ‚äº†ã‚¿ã‚°
+					'linkTagOpen'	=> '',			// ãƒšãƒ¼ã‚¸ãƒªãƒ³ã‚¯ã®é–‹å§‹ã‚¿ã‚°
+					'linkTagClose'	=> '',			// ãƒšãƒ¼ã‚¸ãƒªãƒ³ã‚¯ã®çµ‚äº†ã‚¿ã‚°
+					'curTagOpen'	=> '<B>',		// "ç¾åœ¨" ã®ãƒšãƒ¼ã‚¸ã®ç•ªå·ã®é–‹å§‹ã‚¿ã‚°
+					'curTagClose'	=> '</B>',		// "ç¾åœ¨" ã®ãƒšãƒ¼ã‚¸ã®ç•ªå·ã®çµ‚äº†ã‚¿ã‚°
 				);
-				//¥Ú¡¼¥¸¥ó¥°½é´ü²½
+				//ãƒšãƒ¼ã‚¸ãƒ³ã‚°åˆæœŸåŒ–
 				$c->pagination->initialize( $option );
-				//RSS¥Ç¡¼¥¿¤ò¥Ú¡¼¥¸¤´¤È¤ËÊ¬³ä¤¹¤ë
+				//RSSãƒ‡ãƒ¼ã‚¿ã‚’ãƒšãƒ¼ã‚¸ã”ã¨ã«åˆ†å‰²ã™ã‚‹
 			//	$data = $c->pagination->slice( $rss->items);
 				$data = $c->pagination->slice( $rss_data);
-				//¥¿¥¤¥È¥ë
+				//ã‚¿ã‚¤ãƒˆãƒ«
 				$c->set("title",$datas["comment"],'FALSE');
-				//¥Ú¡¼¥¸¥ó¥°É½¼¨
+				//ãƒšãƒ¼ã‚¸ãƒ³ã‚°è¡¨ç¤º
 				$c->set("pager",$c->pagination->create_links(),'TRUE');
-				//¥Ç¡¼¥¿
+				//ãƒ‡ãƒ¼ã‚¿
 				$c->set("datas",$data,'TRUE');
-				//¥Æ¥ó¥×¥ì¡¼¥È¥Õ¥¡¥¤¥ë»ØÄê
+				//ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«æŒ‡å®š
 				$c->SetViewFile( "./tmplate/rss.html" );
 			}else{
-				//¥Ç¡¼¥¿¤Ê¤·
+				//ãƒ‡ãƒ¼ã‚¿ãªã—
 			}
 		}else{
-		//¥³¡¼¥É¤Ê¤·
+		//ã‚³ãƒ¼ãƒ‰ãªã—
 		}
 	}else{
-	//Get¤Ê¤·
+	//Getãªã—
 	}
 }
 ?>

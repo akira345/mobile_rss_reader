@@ -1,29 +1,29 @@
 <?php
 	require_once( "./config/config.php" );
 	require_once( "../cheetan/cheetan.php" );
-//╔Ф║╪╔╤г╖╬з╓Р╓╚╓╠╓К
+//Ц┐╕Ц┐╪Ц┌╤Х╙█Х╗╪Ц┌▓Ц│▀Ц│▒Ц┌▀
 function is_secure(&$c){
 	return true;
 }
 function action( &$c )
 {
-//╔Ё╔С╔х╔М║╪╔И
-	//╔Ф║╪╔╤ёиёд╔╩╔ц╔х
+//Ц┌ЁЦ┐ЁЦ┐┬Ц┐╜Ц┐╪Ц┐╘
+	//Ц┐╕Ц┐╪Ц┌╤О╪╘О╪╓Ц┌╩Ц┐┐Ц┐┬
 	$user_id = $_SESSION["RSS"]["USER"]["id"];
-	//╔г║╪╔©епо©мя
+	//Ц┐┤Ц┐╪Ц┌©Г≥╩И▄╡Г■╗
 	$data=array();
-	//╔я╔И╔А╔©мя
+	//Ц┐▒Ц┐╘Ц┐║Ц┌©Г■╗
 	$tmp = array();
-	//╥хбс╦гм╜хж╧Ф╪Хфю
+	//Ф░╨Е╦╞Е⌡╨Ф°┴Г∙╙Е▐╥Е▐√Е╬≈
 	$c->easy_login->MobileInformation();
 	$mobile_key = $c->easy_login->IndividualNum();
-	//╢йц╠╔М╔╟╔╓╔Сепо©╦Е╓ш╓╚╓н╔з║╪╔╦╓ь╧т╓╜║╒лА╓ц╓©╓х╓╜╨феы╔А╔ц╔╩║╪╔╦╓╛╫п╓Кбп╨Ж
+	//Г╟║Е█≤Ц┐╜Ц┌╟Ц┌╓Ц┐ЁГ≥╩И▄╡Е╬▄Ц│╩Ц│▀Ц│╝Ц┐ Ц┐╪Ц┌╦Ц│╦Х║▄Ц│█Ц─│Ф┬╩Ц│ёЦ│÷Ц│╗Ц│█Е├█Е╨╕Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц│▄Е┤╨Ц┌▀Е╞╬Г╜√
 	If ($mobile_key != 0){
 		$tmp = array(
 						'mb_key' => $mobile_key
 					);
 		if ($c->login_user->getcount($tmp) >0){
-			//╔г║╪╔©х╞╦╚
+			//Ц┐┤Ц┐╪Ц┌©Г≥╨Х╕▀
 			$c->set("easy_login_chk","FALSE");
 		}else{
 			$c->set("easy_login_chk","TRUE");
@@ -32,47 +32,47 @@ function action( &$c )
 		$c->set("easy_login_chk","TRUE");
 	}
 	if(count( $_POST) ){
-		//╢йц╠╔М╔╟╔╓╔Сепо©╔╥╔╧╔ф╔Ю
+		//Г╟║Е█≤Ц┐╜Ц┌╟Ц┌╓Ц┐ЁГ≥╩И▄╡Ц┌╥Ц┌╧Ц┐├Ц┐═
 
-		//╔╗╔И║╪╔А╔ц╔╩║╪╔╦мя
+		//Ц┌╗Ц┐╘Ц┐╪Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Г■╗
 		$err="";
 
 		If ($mobile_key != 0){
-			//епо©
+			//Г≥╩И▄╡
 			$data = array(
 							"id" => $user_id,
 							"mb_key" => $mobile_key
 						);
 			If($c->login_user->mb_touroku($data)){
-				//╢╟н╩╔А╔ц╔╩║╪╔╦и╫╪╗
-				$err = "<font color=red>╧╧©╥╓╛╢╟н╩╓╥╓ч╓╥╓©║ё</font>";
+				//Е╝▄Д╨├Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Х║╗Г╓╨
+				$err = "<font color=red>Ф⌡╢Ф√╟Ц│▄Е╝▄Д╨├Ц│≈Ц│╬Ц│≈Ц│÷Ц─┌</font>";
 			}else{
 				$err = "<font color=red>" . $c->login_user->show_msg() . "</font>";
 			}
 		}else{
-			$err = "<font color=red>епо©╓к╪╨гт║ё╥хбс╓нг╖╬з╬ПйС╪Хфю╓к╪╨гт╓╥╓ч╓╥╓©║ё</font>";
+			$err = "<font color=red>Г≥╩И▄╡Ц│╚Е╓╠Ф∙≈Ц─┌Ф░╨Е╦╞Ц│╝Х╙█Х╗╪Ф┐┘Е═╠Е▐√Е╬≈Ц│╚Е╓╠Ф∙≈Ц│≈Ц│╬Ц│≈Ц│÷Ц─┌</font>";
 		}
-		$c->set("err",$err,'TRUE');//╔╗╔И║╪╔А╔ц╔╩║╪╔╦╓о╔©╔╟╫пноON
+		$c->set("err",$err,'TRUE');//Ц┌╗Ц┐╘Ц┐╪Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц│╞Ц┌©Ц┌╟Е┤╨Е┼⌡ON
 	}
-	//╦╫╨ъ╔╚╔ф╔╢╔Й╓непо©╓╛╓╒╓К╓╚╔а╔╖╔ц╔╞╓╧╓К
+	//Г▐╬Е°╗Ц┌╚Ц┐├Ц┌╢Ц┐╙Ц│╝Г≥╩И▄╡Ц│▄Ц│┌Ц┌▀Ц│▀Ц┐│Ц┌╖Ц┐┐Ц┌╞Ц│≥Ц┌▀
 	$tmp = array(
 				'id' => $user_id,
 			);
 	if ($c->category->getcount($tmp) >0){
-		//╔г║╪╔©х╞╦╚
-		$c->set("category_datas", $c->category->find($tmp, "no ASC" ));	//NO╓г╬╨╫Г╓к╔╫║╪╔х
+		//Ц┐┤Ц┐╪Ц┌©Г≥╨Х╕▀
+		$c->set("category_datas", $c->category->find($tmp, "no ASC" ));	//NOЦ│╖Ф≤┤И═├Ц│╚Ц┌╫Ц┐╪Ц┐┬
 	}
-	//RSS╔г║╪╔©╓Рфи╓ъ╧Ч╓ъ
+	//RSSЦ┐┤Ц┐╪Ц┌©Ц┌▓Х╙╜Ц│©Х╬╪Ц│©
 	$tmp = array(
 			'id' => $user_id,
 			'hidden_chk' => '0',
 			'category_cd' => '0'
 		);
 	If ($c->rss_data->getcount($tmp) >0){
-		//╔г║╪╔©х╞╦╚
+		//Ц┐┤Ц┐╪Ц┌©Г≥╨Х╕▀
 		$c->set("rss_datas", $c->rss_data->find($tmp,"no ASC"));
 	}
-//╔ф╔С╔в╔Л║╪╔х╔у╔║╔╓╔К╩ьдЙ
+//Ц┐├Ц┐ЁЦ┐≈Ц┐╛Ц┐╪Ц┐┬Ц┐∙Ц┌║Ц┌╓Ц┐╚Ф▄┤Е╝ 
 	$c->SetViewFile( "./tmplate/mb_main.html" );
 }
 ?>

@@ -1,17 +1,17 @@
 <?php
-//¶¦ÄÌ¥¯¥é¥¹¥é¥¤¥Ö¥é¥ê
+//å…±é€šã‚¯ãƒ©ã‚¹ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 class common_lib{
-	//¥í¥°¥¤¥ó¤·¤Æ¤¤¤ë¤«¤Î¥Á¥§¥Ã¥¯´Ø¿ô
+	//ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ã„ã‚‹ã‹ã®ãƒã‚§ãƒƒã‚¯é–¢æ•°
 	function check_login(){
 	    if( empty( $_SESSION["RSS"]["USER"] ) ){
-		//¥í¥°¥¤¥ó¤·¤Æ¤¤¤Ê¤¤
+		//ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ã„ãªã„
 			return FALSE;
 		}else{
-		//¥í¥°¥¤¥ó¤·¤Æ¤¤¤ë
+		//ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ã„ã‚‹
 			return TRUE;
 		}
 	}
-	//DBÅĞÏ¿Æü»şµ­Ï¿ÍÑ
+	//DBç™»éŒ²æ—¥æ™‚è¨˜éŒ²ç”¨
 	function get_date()
 	{
 		return date('Ymd');
@@ -20,7 +20,7 @@ class common_lib{
 	{
 		return date('His');
 	}
-	//URL¤ò¹½À®¤¹¤ë¤«¥Á¥§¥Ã¥¯¤¹¤ë
+	//URLã‚’æ§‹æˆã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	function chk_url($data,$errmsg = ""){
 		return $this->_check(preg_match('/^(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/',$data),$errmsg);
 	}
@@ -40,7 +40,7 @@ class common_lib{
 	function make_category_list( &$c ,$name="",$user_id="",$set_no=""){
 	
 			$ret = "<SELECT name=\"" . $name . "\">" . "\r\n";
-			$ret .="<option selected value=\"0\">»ØÄê¤Ê¤·</option>" . "\r\n";
+			$ret .="<option selected value=\"0\">æŒ‡å®šãªã—</option>" . "\r\n";
 			$tmp = array();
 			$datas = array();
 			$tmp = array(
@@ -54,7 +54,7 @@ class common_lib{
 			}
 			foreach( $data["datas"] as $var ){ 
 				If ($var["no"] == $set_no){
-					//°ìÃ×¤·¤¿¤é
+					//ä¸€è‡´ã—ãŸã‚‰
 					$ret .= "<OPTION value=\"" . $var["no"] ."\" selected>" . $var["category"] . "</OPTION>" . "\r\n";
 				}else{
 					$ret .= "<OPTION value=\"" . $var["no"] ."\">" . $var["category"] . "</OPTION>" . "\r\n";
@@ -82,9 +82,9 @@ class common_lib{
 		$ret .= "</SELECT>" . "\r\n";
 		return $ret;
 	}
-	//ÇÛÎó¤Ë³ÊÇ¼¤µ¤ì¤¿¥­¡¼¥ï¡¼¥É¤¬Â¸ºß¤·¤¿¤«¤É¤¦¤«¤òÈ½Äê¤¹¤ë´Ø¿ôÄêµÁ
-	//°ú¿ô¡§¸¡º÷ÂĞ¾İÊ¸»úÎó¡¢¥­¡¼¥ï¡¼¥É¤ÎÆş¤Ã¤¿Ï¢ÁÛÇÛÎó
-	//ÌáÃÍ¡§¥­¡¼¥ï¡¼¥ÉÂ¸ºß¤¢¤ê¡ÊTrue)¤Ê¤·¡ÊFalse¡Ë
+	//é…åˆ—ã«æ ¼ç´ã•ã‚ŒãŸã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ãŒå­˜åœ¨ã—ãŸã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹é–¢æ•°å®šç¾©
+	//å¼•æ•°ï¼šæ¤œç´¢å¯¾è±¡æ–‡å­—åˆ—ã€ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã®å…¥ã£ãŸé€£æƒ³é…åˆ—
+	//æˆ»å€¤ï¼šã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰å­˜åœ¨ã‚ã‚Šï¼ˆTrue)ãªã—ï¼ˆFalseï¼‰
 	function array_strpos($in_str,$in_array_keyword){
 		$ret = FALSE;
 		foreach ($in_array_keyword as $key){

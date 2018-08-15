@@ -1,44 +1,44 @@
 <?php
 	require_once( "./config/config.php" );
 	require_once( "../cheetan/cheetan.php" );
-//¥æ¡¼¥¶Ç§¾Ú¤ò¤«¤±¤ë
+//ãƒ¦ãƒ¼ã‚¶èªè¨¼ã‚’ã‹ã‘ã‚‹
 function is_secure(&$c){
 	return true;
 }
 function action( &$c )
 {
-	//¾ðÊó¥»¥Ã¥È
+	//æƒ…å ±ã‚»ãƒƒãƒˆ
 	$no = $_SESSION["RSS"]["DEL"]["NO"];
-	//¥æ¡¼¥¶£É£Ä¥»¥Ã¥È
+	//ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤ã‚»ãƒƒãƒˆ
 	$user_id = $_SESSION["RSS"]["USER"]["id"];
-	//¥Ç¡¼¥¿ÆÉ¤ß¹þ¤ß
+	//ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	$tmp = array(
 				'id' => $user_id,
 				'no' => $no
 			);
 	if ($c->rss_data->getcount($tmp) ==1){
-		//¥Ç¡¼¥¿È¯¸«
+		//ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹
 		$c->set("datas", $c->rss_data->findone($tmp));
 	}else{
-		//¥Ç¡¼¥¿¤¬Ìµ¤¤¤Î¤ÇÌá¤¹
+		//ãƒ‡ãƒ¼ã‚¿ãŒç„¡ã„ã®ã§æˆ»ã™
 		$c->redirect('edit_rss.php');
 	}
 	if( count( $_POST ) )
     {
-	//POST¤Ç¤Ê¤ó¤«Æþ¤Ã¤Æ¤¤¤ë
+	//POSTã§ãªã‚“ã‹å…¥ã£ã¦ã„ã‚‹
 
-		//POST¥Ç¡¼¥¿¤òÆþ¤ì¤ë
+		//POSTãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹
 		$data["back"]=$c->s->postt("back");
 		$data["del"]=$c->s->postt("del");
 	//	echo var_dump($data);
 	//	echo count($data["back"]);
 		If ($data["back"] !==''){
-		//Ìá¤¹
+		//æˆ»ã™
 			unset($_SESSION["RSS"]["DEL"]);
 			$c->redirect('edit_rss.php');
 		}
 		If ($data["del"] !==''){
-			//ºï½ü½èÍý³«»Ï
+			//å‰Šé™¤å‡¦ç†é–‹å§‹
 			$tmp = array(
 				'id' => $user_id,
 				'no' => $no
@@ -49,7 +49,7 @@ function action( &$c )
 		}
 
 	}
-//¥Æ¥ó¥×¥ì¡¼¥È¥Õ¥¡¥¤¥ë»ØÄê
+//ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«æŒ‡å®š
 	$c->SetViewFile( "./tmplate/del_ok.html" );
 }
 ?>

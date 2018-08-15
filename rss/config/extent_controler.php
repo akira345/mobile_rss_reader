@@ -1,33 +1,33 @@
 <?php
-//¤Á¤¤¤¿¤ó¤Î¥³¥ó¥È¥í¡¼¥é¥¯¥é¥¹¤ò³ÈÄ¥¤¹¤ë¡£
+//ã¡ã„ãŸã‚“ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚¯ãƒ©ã‚¹ã‚’æ‹¡å¼µã™ã‚‹ã€‚
 class CMyController extends CController
 {
-	var $encoding;	//¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°
+	var $encoding;	//ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°
 
     function CMyController()
     {
-		//¥³¥ó¥¹¥È¥é¥¯¥¿
+		//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     }
 
-	function setEncoding($encode = 'EUC-JP'){//¥Ç¥Õ¥©¥ë¥È¤Ï£Å£Õ£Ã¤Ë¤¹¤ë
+	function setEncoding($encode = 'UTF-8'){//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯UTF8ã«ã™ã‚‹
 		$this->encoding = $encode;
 	}
 	function getEncoding(){
 		return $this->encoding;
 	}
 	function setEscape($value){
-	//http://soft.fpso.jp/develop/php/entry_1891.html¤ò»²¹Í¤ËºîÀ®¤·¤Æ¤ß¤¿
+	//http://soft.fpso.jp/develop/php/entry_1891.htmlã‚’å‚è€ƒã«ä½œæˆã—ã¦ã¿ãŸ
 		If (is_array($value)){
 			foreach ($value as $key => $val){
-				//ÇÛÎó¤òÅ¸³«¤¹¤ë
+				//é…åˆ—ã‚’å±•é–‹ã™ã‚‹
 				If (is_array($val)){
-					//Å¸³«¤·¤¿ÃÍ¤¬ÇÛÎó¤À¤Ã¤¿
-					//ºÆµ¢Åª¤Ë¸Æ¤Ó½Ğ¤¹
+					//å±•é–‹ã—ãŸå€¤ãŒé…åˆ—ã ã£ãŸ
+					//å†å¸°çš„ã«å‘¼ã³å‡ºã™
 					$val = $this->setEscape($val);
 				}else{
 					$val = htmlentities($val, ENT_QUOTES,$this->encoding);
 				}
-				//Å¸³«¤·¤¿ÇÛÎó¤ò¸µ¤ËÌá¤¹
+				//å±•é–‹ã—ãŸé…åˆ—ã‚’å…ƒã«æˆ»ã™
 				$value[$key] = $val;
 			}
 			return $value;
@@ -37,8 +37,8 @@ class CMyController extends CController
 	}
 	function set( $name, $value, $out_tag_flg = FALSE )
 	{
-		//½ĞÎÏ»ş¤Ëhtmlentities¤òÄÌ¤¹¡£¤¿¤À¤·¡¢
-		//¥¿¥°½ĞÎÏ¥Õ¥é¥°¤¬ON¤Î¾ì¹ç¤Ï¥¹¥ë¡¼¤¹¤ë
+		//å‡ºåŠ›æ™‚ã«htmlentitiesã‚’é€šã™ã€‚ãŸã ã—ã€
+		//ã‚¿ã‚°å‡ºåŠ›ãƒ•ãƒ©ã‚°ãŒONã®å ´åˆã¯ã‚¹ãƒ«ãƒ¼ã™ã‚‹
 		If ($out_tag_flg == FALSE){
 			$this->variables[$name] = $this->setEscape($value);
 		}else{
@@ -52,7 +52,7 @@ class CMyController extends CController
 		{
 			header( "HTTP/1.1 301 Moved Permanently" );
 		}
-		###madhatter¤µ¤ó¤Î¥³¡¼¥É¤òÇÒ¼Ú¤·¡¢°ìÉô½¤Àµ
+		###madhatterã•ã‚“ã®ã‚³ãƒ¼ãƒ‰ã‚’æ‹å€Ÿã—ã€ä¸€éƒ¨ä¿®æ­£
 		if(!$_COOKIE[session_name()]){
 			$url .= ( strpos($url, "?") != false ? "&" : "?" ) . urlencode(session_name()) . "=" . htmlspecialchars(session_id(),ENT_QUOTES);
 		}

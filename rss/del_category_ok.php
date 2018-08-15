@@ -1,64 +1,64 @@
 <?php
 	require_once( "./config/config.php" );
 	require_once( "../cheetan/cheetan.php" );
-//¥æ¡¼¥¶Ç§¾Ú¤ò¤«¤±¤ë
+//ãƒ¦ãƒ¼ã‚¶èªè¨¼ã‚’ã‹ã‘ã‚‹
 function is_secure(&$c){
 	return true;
 }
 function action( &$c )
 {
-	//¾ðÊó¥»¥Ã¥È
+	//æƒ…å ±ã‚»ãƒƒãƒˆ
 	$no = $_SESSION["RSS"]["DEL"]["NO"];
-	//¥æ¡¼¥¶£É£Ä¥»¥Ã¥È
+	//ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤ã‚»ãƒƒãƒˆ
 	$user_id = $_SESSION["RSS"]["USER"]["id"];
-	//¥Ç¡¼¥¿ÆÉ¤ß¹þ¤ß
+	//ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	$tmp = array(
 				'id' => $user_id,
 				'no' => $no
 			);
 	if ($c->category->getcount($tmp) ==1){
-		//¥Ç¡¼¥¿È¯¸«
+		//ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹
 		$c->set("datas", $c->category->findone($tmp));
 	}else{
-		//¥Ç¡¼¥¿¤¬Ìµ¤¤¤Î¤ÇÌá¤¹
+		//ãƒ‡ãƒ¼ã‚¿ãŒç„¡ã„ã®ã§æˆ»ã™
 		$c->redirect('edit_category.php');
 	}
 	if( count( $_POST ) )
     {
-	//POST¤Ç¤Ê¤ó¤«Æþ¤Ã¤Æ¤¤¤ë
-	$data = array();//¥Ç¡¼¥¿ÍÑ
+	//POSTã§ãªã‚“ã‹å…¥ã£ã¦ã„ã‚‹
+	$data = array();//ãƒ‡ãƒ¼ã‚¿ç”¨
 
-		//POST¥Ç¡¼¥¿¤òÆþ¤ì¤ë
+		//POSTãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹
 		$data["back"]=$c->s->postt("back");
 		$data["del"]=$c->s->postt("del");
 	//	echo var_dump($data);
 	//	echo count($data["back"]);
 		If ($data["back"] !==''){
-		//Ìá¤¹
+		//æˆ»ã™
 			unset($_SESSION["RSS"]["DEL"]);
 			$c->redirect('edit_category.php');
 		}
 		If ($data["del"] !==''){
-			//ºï½ü½èÍý³«»Ï
-			//ºï½üÁ°¤Ë³ºÅö¥«¥Æ¥´¥ê¤¬»ØÄê¤µ¤ì¤¿¥Ç¡¼¥¿¤¬Â¸ºß¤·¤¿¤é¡¢³ºÅö¤Ê¤·¥Ç¡¼¥¿¤È¤·¤ÆÅÐÏ¿¤¹¤ë
-			//¤¤¤é¤Ê¤¤ÇÛÎó¤ò¾Ã¤¹
+			//å‰Šé™¤å‡¦ç†é–‹å§‹
+			//å‰Šé™¤å‰ã«è©²å½“ã‚«ãƒ†ã‚´ãƒªãŒæŒ‡å®šã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ãŸã‚‰ã€è©²å½“ãªã—ãƒ‡ãƒ¼ã‚¿ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
+			//ã„ã‚‰ãªã„é…åˆ—ã‚’æ¶ˆã™
 			unset($data["del"]);
 			unset($data["update"]);
 			unset($data["back"]);
-			//¹¹¿·¥Ç¡¼¥¿¥»¥Ã¥È
+			//æ›´æ–°ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 			$data["category_cd"] = 0;
-			//ÅÐÏ¿Æü¥»¥Ã¥È
+			//ç™»éŒ²æ—¥ã‚»ãƒƒãƒˆ
 			$data["touroku_date"] = $c->common_lib->get_date();
 			$data["touroku_time"] = $c->common_lib->get_time();
-			//¾ò·ï
+			//æ¡ä»¶
 			$tmp = array(
 							'id' => $user_id,
 							'category_cd' => $no
 						);
-			//ÅÐÏ¿
+			//ç™»éŒ²
 			$c->rss_data->updateby($data,$tmp);
 
-			//ºï½ü
+			//å‰Šé™¤
 			$tmp = array(
 				'id' => $user_id,
 				'no' => $no
@@ -69,7 +69,7 @@ function action( &$c )
 		}
 
 	}
-//¥Æ¥ó¥×¥ì¡¼¥È¥Õ¥¡¥¤¥ë»ØÄê
+//ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«æŒ‡å®š
 	$c->SetViewFile( "./tmplate/del_category_ok.html" );
 }
 ?>
